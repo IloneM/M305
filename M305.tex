@@ -1,8 +1,9 @@
-\documentclass{report}
+\documentclass{article}
+\usepackage[a4paper]{geometry}   % .. avec les bonnes marges
 \pagestyle{headings}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
-\usepackage[hmargin=2.5cm, vmargin=1.5cm]{geometry}
+%\usepackage[hmargin=2.5cm, vmargin=1.5cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
 \usepackage{titlesec} 
@@ -149,17 +150,38 @@
 % Théorème, définition ...
 
 \theoremstyle{definition}   
-\newtheorem*{defi}{Définition}
-\newtheorem*{depro}{Définition-proposition}
-\newtheorem*{theo}{Théorème} 
-\newtheorem*{prop}{Proposition}
-\newtheorem*{lem}{Lemme} 
-\newtheorem*{coro}{Corollaire} 
-\newtheorem*{ax}{Axiome}
+
+% avec numerotation
+
+\newtheorem{defi}{Définition}
+\newtheorem{depro}{Définition-proposition}
+\newtheorem{theo}{Théorème} 
+\newtheorem{prop}{Proposition}
+\newtheorem{lem}{Lemme} 
+\newtheorem{coro}{Corollaire} 
+\newtheorem{ax}{Axiome}
+
+%sans numerotation
+
+\newtheorem*{defi*}{Définition}
+\newtheorem*{depro*}{Définition-proposition}
+\newtheorem*{theo*}{Théorème} 
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{lem*}{Lemme} 
+\newtheorem*{coro*}{Corollaire} 
+\newtheorem*{ax*}{Axiome}
                 
 \theoremstyle{remark}
-\newtheorem*{rem}{Remarque}
-\newtheorem*{nota}{Notation} 
+
+% avec numerotation
+
+\newtheorem{rem}{Remarque}
+\newtheorem{nota}{Notation}
+
+%sans numerotation
+
+\newtheorem*{rem*}{Remarque}
+\newtheorem*{nota*}{Notation} 
 
 
 \newcommand*{\quo}[2]%
@@ -170,9 +192,9 @@
 
 % Définition personnalisée de la numerotation des titres, sous-titres ...
 
-\renewcommand{\thesection}{\Roman{section}.}
-\renewcommand{\thesubsection}{\alph{subsection}.}
-\renewcommand{\thesubsubsection}{\alph{subsubsection})}
+%\renewcommand{\thesection}{\Roman{section}.}
+%\renewcommand{\thesubsection}{\alph{subsection}.}
+%\renewcommand{\thesubsubsection}{\alph{subsubsection})}
 
 %________________________________________________________________________%
 
@@ -199,10 +221,10 @@
 
 % Application
 
-\newcommand{\app}[5]{\begin{array}[t]{lrcl}
-#1 : & #2 & \longrightarrow & #3 \\
-& #4 & \longmapsto & #5  \\
-\end{array}
+\newcommand{\app}[5]{#1:\left\{\begin{array}{rcl}
+#2 & \longrightarrow & #3 \\
+#4 & \longmapsto & #5  \\
+\end{array}\right.
 }
 
 % Encadrement
@@ -289,9 +311,29 @@
  
 \begin{document}
 
-\chapter*{Algèbre 2}
+\title{Notes de cours de M305-Alg\`ebre 2}
 
-\subsection{Groupes abéliens de type fini}
+\maketitle
+\tableofcontents
+
+%\chapter*{Algèbre 2}
+
+\section{rappels de th\'eorie des groupes}
+
+{\bf\`A compl\'eter}
+
+\section{Groupes abéliens de type fini}
+
+Le but de cette section est de donner une classification des groupes ab\'eliens. On va s'int\'eresser pour cela \`a une sous-cat\'egorie de groupes ab\'eliens: les groupes abliens de type fini. Dans toutes cette section la loi des groupes consid\'er\'es sera $+$ sauf mention contraire explicite.
+
+
+
+\begin{rem}
+Tout groupe ab\'elien $(G,+,e_G)$ peut s'identifier \`a un $\Z$-module en posant:\\
+$\app{\cdot}{\Z\times G}{G}{(n,g)}{\begin{cases}e_G & si\, n=0\\\sum_{i=1}^n g & si\, n>0\\\sum_{i=1}^{-n} (-g) & si\, n<0\end{cases}}$. On v\'erifie ais\'ement que
+$\cdot$ v\'erifie:\\
+$\forall n\in \Z,\forall (h,g)\in G\times G,\, n\cdot(h+G)=(n\cdot g)+(n\cdot h)$.
+\end{rem}
 
 \begin{depro}
 Soient $G$ un groupe abélien et $S$ une partie de $G$. Alors il existe un unique sous-groupe $H$ de $G$ qui contient $S$ minimal (pour l'inclusion). $H$ est appelé le \textit{sous-groupe de $G$ engendré par la partie $S$}, et noté $<S>$.
