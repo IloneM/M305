@@ -1,26 +1,380 @@
-\documentclass{article}          % article
-\usepackage[a4paper]{geometry}   % ... avec les bonnes marges
-\usepackage[utf8]{inputenc}      % accents encodés en UTF-8
-\usepackage[T1]{fontenc}         % polices accentuées
-\usepackage{lmodern}             % ... et vectorielles
-\usepackage[francais]{babel}     % tout en français
+\documentclass{report}
+\pagestyle{headings}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[hmargin=2.5cm, vmargin=1.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{titlesec} 
+\usepackage{upgreek}
+\usepackage{pifont}
+\usepackage{graphicx} 
+\usepackage{pstricks-add}
+\usepackage{pst-eucl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{stmaryrd}
 
-\usepackage{amsfonts}            %
-\usepackage{amssymb}             % Divers symboles, environnements et polices utiles
-\usepackage{amsmath}             %
-\usepackage{amsthm}              %
 
-\newcommand{\fonction}[4]{\left\{\begin{array}{rcl}#1 &
-     		\longrightarrow & #2 \\ #3 & \longmapsto & #4 \end{array}\right.}
-\newcommand{\ibl}{[\![}
-\newcommand{\ibr}{]\!]}
 
+
+%________________________________________________________________________%
+
+% Nouvelles commandes (raccourcis)
+
+% Ensembles
+
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ent}[2]{[\![ #1, #2 ]\!]}
+
+
+
+% Algèbre linéaire
+
+\newcommand{\ev}{espace vectoriel}
+\newcommand{\sev}{sous-espace vectoriel}
+\newcommand{\kev}{$\K$-\ev}
+\newcommand{\jus}{\underline{Justification :}}
+
+\newcommand{\sta}{\mathrm{Stab}}
+\newcommand{\card}[1]{\mathrm{card}(#1)}
+\newcommand{\vect}[1]{\mathrm{Vect}\left(#1\right)}
+\newcommand{\rg}[1]{\mathrm{rg}(#1)}
+\newcommand{\mat}[2]{\mathrm{Mat}(#1 , #2)}
+
+\newcommand{\im}{\mathop{\mathrm{Im}}\nolimits}
+\renewcommand{\ker}{\mathop{\mathrm{Ker}}\nolimits}
+
+
+
+% Fonctions hyperboliques
+
+\renewcommand{\th}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+
+\newcommand{\argsh}{\mathop{\mathrm{Argsh}}\nolimits}
+\newcommand{\argch}{\mathop{\mathrm{Argch}}\nolimits}
+\newcommand{\argth}{\mathop{\mathrm{Argth}}\nolimits}
+
+
+
+% Raccourcis
+
+
+\newcommand{\ssi}{si et seulement si}
+
+\newcommand{\equi}{les assertions suivantes sont équivalentes :}
+
+\newcommand{\pgcd}{\mathrm{PGCD}} 
+
+\newcommand{\con}{$\text{\ding{54}}$ Contradiction.} 
+
+\newcommand{\dis}{\displaystyle}
+\newcommand{\dx}{\mathrm{d} x}
+\newcommand{\dt}{\mathrm{d} t}
+
+
+
+
+% Topologie
+
+\newcommand{\bfe}{\overline{B}}
+
+\newcommand{\nor}{\Vert \ \Vert}
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+%\newcommand{\nt}[1]{|\!|\!|  #1 |\!|\!| }%
+\newcommand{\nt}[1]{\llbracket  #1 \rrbracket }
+
+\newcommand{\ov}[1]{\overline{#1}}
+
+
+\newcommand{\inte}[1]{\mathring{ #1}}
+\newcommand{\ad}[1]{\overline{ #1}}
+\newcommand{\fr}[1]{\text{Fr}(#1) }
+\newcommand{\lims}[1]{\overset{n \rightarrow + \infty}{\underset{#1}{\longrightarrow}}}
+%\newcommand{\limf}[2]{\overset{x \rightarrow #1}{\underset{\nor_{#2}}{\longrightarrow}}}%
+\newcommand{\limsu}{\overset{n \rightarrow + \infty}{\longrightarrow}}
+\newcommand{\limf}[1]{\overset{x \rightarrow #1}{\longrightarrow}}
+
+
+
+
+
+\newcommand{\mn}[1]{\mathcal{M}_n(#1)}
+\newcommand{\mnk}{\mn{\K}}
+\newcommand{\gl}[1]{\text{GL}(#1)}
+\newcommand{\gle}{\gl{E}}
+\newcommand{\gln}[1]{\text{GL}_n(#1)}
+\newcommand{\glnk}{\gln{\K}}
+\newcommand{\on}[1]{\text{O}(#1)}
+\newcommand{\onn}{\on{n}}
+\newcommand{\son}[1]{\text{SO}(#1)}
+\newcommand{\sonn}{\son{n}}
+\renewcommand{\mat}[2]{\underset{#1}{\text{Mat}}#2}
+
+
+\newcommand{\tra}[1]{\,{\vphantom{#1}}^{t}\!{#1}}
+
+\newcommand{\lir}[2]{\substack{#1 \to #2}}
+\newcommand{\li}[2]{\lim\limits_{\substack{#1 \to #2}}}
+\newcommand{\lix}[1]{\lim\limits_{\substack{#1}}}
+\newcommand{\lis}{\li{n}{+\infty}}
+
+\newcommand{\un}{{(u_n)}_{n \in \N} }
+\newcommand{\uu}[1]{{(u_{#1})}_{n \in \N}}
+\newcommand{\pp}[1]{{\left( #1\right)}_{n \in \N}}
+
+\newcommand{\fn}{{(f_n)}_{n \in \N} }
+\newcommand{\sfn}{\dis \sum f_n }
+
+
+\newcommand{\f}{\forall \ }
+\newcommand{\e}{\exists \ }
+\newcommand{\va}[1]{\left\vert #1 \right\vert }
+
+\renewcommand{\o}[1]{\mathrm{o}\left(#1\right)}
+
+     
+%________________________________________________________________________%
+
+% Théorème, définition ...
+
+\theoremstyle{definition}   
+\newtheorem*{defi}{Définition}
+\newtheorem*{depro}{Définition-proposition}
+\newtheorem*{theo}{Théorème} 
+\newtheorem*{prop}{Proposition}
+\newtheorem*{lem}{Lemme} 
+\newtheorem*{coro}{Corollaire} 
+\newtheorem*{ax}{Axiome}
+                
+\theoremstyle{remark}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{nota}{Notation} 
+
+
+\newcommand*{\quo}[2]%
+{\ensuremath{%
+    #1/\!\raisebox{-.65ex}{\ensuremath{\mathcal{#2}}}}}
+
+%________________________________________________________________________%
+
+% Définition personnalisée de la numerotation des titres, sous-titres ...
+
+\renewcommand{\thesection}{\Roman{section}.}
+\renewcommand{\thesubsection}{\alph{subsection}.}
+\renewcommand{\thesubsubsection}{\alph{subsubsection})}
+
+%________________________________________________________________________%
+
+% Structure
+
+% Titres personnalisés
+
+\newcommand{\partie}[1]{\textcolor{red}{\section{#1}}}
+\newcommand{\titre}[1]{\textcolor{orange}{\subsection{#1}}}
+
+% Commande exercice et exemple
+
+\newcommand{\exems}{{\textbf{$\text{\ding{46}}$ Exemples : \ }}}
+
+\newcommand{\exem}{{\textbf{$\text{\ding{46}}$ Exemple : \ }}}
+
+\newcounter{nexo}
+\setcounter{nexo}{0}        
+\newcommand{\exo}{
+  \stepcounter{nexo}        
+  {\textbf{Exercice \arabic{nexo}} \\ }}
+  
+\newcommand{\appli}{{\textbf{$\text{\ding{46}}$ Application : \ }}}  
+
+% Application
+
+\newcommand{\app}[5]{\begin{array}[t]{lrcl}
+#1 : & #2 & \longrightarrow & #3 \\
+& #4 & \longmapsto & #5  \\
+\end{array}
+}
+
+% Encadrement
+
+\newcommand{\enc}[1]{\noindent\fbox{\parbox{\linewidth\fboxrule\fboxsep}{#1}}}
+  
+%________________________________________________________________________%
+
+% Style de numérotation équation
+  
+\renewcommand{\theequation}{\arabic{equation}}
+  
+%________________________________________________________________________%
+
+% Listes théorèmes, définitions
+  
+\newlist{az}{enumerate}{3}
+\setlist[az,1]{label=\fcolorbox{blue}{lightgray}{\alph*},font=\color{black}}
+\setlist[az,2]{label=(\roman*)}
+\setlist[az,3]{label=$\leadsto$}
+
+%________________________________________________________________________%
+
+% Listes théorèmes, définitions correspondant aux démonstrations  
+  
+\newlist{dem}{enumerate}{1}
+\setlist[dem,1]{label=\textbf{\alph*.}}
+
+
+%________________________________________________________________________%
+
+% Listes exercices, exemples
+  
+\newlist{exe}{enumerate}{2}
+\setlist[exe,1]{label=\textcircled{\arabic*} }
+\setlist[exe,2]{label= \alph*)}
+
+%________________________________________________________________________%
+
+% Structure démonstration (existence et unicité)
+
+\newcommand{\demo}[2]{\begin{enumerate}[label=\textbullet]
+\item \textsc{Existence :} #1
+\item \textsc{Unicité :} #2
+\end{enumerate}}
+
+%________________________________________________________________________%
+
+% Liste avec point
+  
+\newlist{point}{enumerate}{1}
+\setlist[point,1]{label=$\bullet$}
+
+%________________________________________________________________________%
+
+% Liste numérotée
+    
+\newlist{lnu}{enumerate}{1}
+\setlist[lnu,1]{label=(\arabic*) }
+
+% Liste avec étoile 
+
+\newlist{etoile}{enumerate}{2}
+\setlist[etoile,1]{label=$\star$}
+\setlist[etoile,2]{label= -}
+
+%________________________________________________________________________%
+
+
+
+% Listes cas
+  
+\newenvironment{cas}[1][gray]
+  {\begin{description}[font=\color{#1}]}
+  {\end{description}}
+
+
+
+%________________________________________________________________________%
+
+%_______________________________________________________________________Début document_____________________________________________________________________%
+
+
+ 
 \begin{document}
-\title{Cours alg\`ebre}
-\author{Jade,Nilo}
-\maketitle
-\tableofcontents
 
-\newpage
+\chapter*{Algèbre 2}
+
+\subsection{Groupes abéliens de type fini}
+
+\begin{depro}
+Soient $G$ un groupe abélien et $S$ une partie de $G$. Alors il existe un unique sous-groupe $H$ de $G$ qui contient $S$ minimal (pour l'inclusion). $H$ est appelé le \textit{sous-groupe de $G$ engendré par la partie $S$}, et noté $<S>$.
+\end{depro}
+
+\begin{proof}
+On note $\mathcal{E}$ l'ensemble des sous-groupes de $G$ contenant $S$. $\mathcal{E}$ est non vide (car $G \in\mathcal{E}$). Alors $\dis \bigcap_{H \in \mathcal{E}} H$ est un sous-groupe de $G$ contenant $S$ qui contenu dans tout autre élément de $\mathcal{E}$.
+\end{proof}
+
+\begin{rem}
+Soit $G$ un groupe abélien, soit $S$ une partie de $G$. Alors $<S>$ contient l'élément neutre, et stable par additivité et passage à l'inverse. Comme $G$ est abélien, $<S>$ contient donc toutes les combinaisons linéaires d'éléments de $S$ : $<S>=\left\{\dis \sum n_is_i \mid (s_i)_{1 \leqslant i \leqslant r} \in S^r, (n_i)_{1 \leqslant i \leqslant r} \in \Z^r, r \in \N \right\}$ (un tel ensemble est bien un sous-groupe de $G$ d'où l'égalité par unicité).
+\end{rem}
+
+\begin{defi}
+Soit $G$ un groupe abélien, soit $S$ une partie de $G$. 
+\begin{point}
+\item On dit que $S$ est u\textit{ne partie génératrice} de $G$, ou encore que $S$ engendre $G$, si $G=<S>$.
+\item On dit que le \textit{groupe abélien} $G$ est de \textit{type fini} s'il admet une \textit{partie génératrice finie}. 
+\end{point}
+\end{defi}
+
+Pour tout $r \in \N^*$., on note $e=(e_i)_{1 \leqslant i \leqslant r} \in (\Z^r)^r$ la base canonique de $\Z^r$ (chaque vecteur a pour ième coordonnée $1$ et $0$ ailleurs).
+
+\exem Un groupe $G$ abélien fini est de type fini (engendré par la partie $G$ finie). \\
+Soit $r \in \N^*$. Alors $\Z^r$ est un groupe abélien de type fini (engendré par la partie $\{e_1, \ldots, e_r \}$ finie).
+
+\begin{lem}
+Soit $G$ un groupe abélien, soit $r \in \N^*$, soit $(x_1, \ldots, x_r) \in G^r$. Alors il \textit{existe un unique morphisme} de groupes $f$ du groupe $\Z^r$ dans le groupe $G$ qui, pour tout $i \in \nt{1,r}$, \textit{envoie $e_i$ sur $x_i$ $(\star)$}, donné par $\app{f}{\Z^r}{G}{(a_i)_{1 \leqslant i \leqslant r}}{\dis \sum_{i=1}^ra_ix_i}$. \\ De plus, $\im f =<\{x_1, \ldots, x_r\}>$.
+\end{lem}
+
+\begin{proof}
+Un morphisme de groupes de $\Z^r$ dans $G$ vérifiant $(\star)$ est uniquement déterminé par l'image de la base canonique $e$ par décomposition d'un vecteur de $\Z^r$ dans cette base et linéarité du morphisme.
+\end{proof}
+
+\begin{coro}
+Un groupe abélien est de type fini si et seulement si il existe un morphisme de groupes \textit{surjectif} du groupe $\Z^r$ dans le groupe $G$ (où $r \in \N$).
+\end{coro}
+
+\begin{proof}
+On conserve les notations de la proposition précédente. \\
+Soit $G$ un groupe abélien de type fini. Alors $G$ possède une partie génératrice finie $S=\{x_1, \ldots, x_r \}$ (où $r \in \N$), d'où $\im f=<S>=G$, ie le morphisme de groupes $f$ de $\Z^r$ dans $G$ est surjectif. \\
+Réciproquement, soit $g$ un morphisme de groupes surjectif de $\Z^r$ (où $r \in \N$) dans $G$ , alors $S=\{f(e_1), \ldots, f(e_r) \}$ est une partie génératrice de $G$ (car tout élément de $G$ possède un antécédent dans $\Z^r$ qui se décompose dans la base canonique $e$, donc son image, ie $g$, s'écrit comme combinaison linéaire d'éléments de $S$). 
+\end{proof}
+
+\begin{prop}
+Soient $G$ et $H$ deux groupes abéliens. Soit $f$ un morphisme de groupes de $G$ dans $H$. On suppose que le groupe abélien $G$ est de type fini. Alors le groupe abélien $\im f$ est de type fini.
+\end{prop}
+
+\begin{proof}
+Soit $S$ une partie génératrice de $G$. Alors $f(S)$ est une partie génératrice de $\im f$.
+\end{proof}
+
+\begin{coro}
+
+\end{coro}
+
+\begin{prop}
+Soient $G$ et $H$ deux groupes abéliens. Soit $f$ un morphisme de groupes de $G$ dans $H$. On suppose que les groupes abéliens $\im f$ et $\ker f$ sont de \textit{type fini}. Alors $G$ est un groupe abélien de type fini.
+\end{prop}
+
+\begin{proof}
+Par hypothèse, il existe $(x_1, \ldots, x_r) \in G^r$ tel que la partie finie $\{f(x_1), \ldots, f(x_r) \}$ engendre $\im f$ et il existe $(y_1, \ldots, y_r) \in (\ker f)^s$ tel que la partie finie $\{y_1, \ldots, y_s \}$ engendre $\ker f$. Soit $g \in G$. Alors il existe $(n_1, \ldots, n_r) \in \Z^r$ tel que $f(g)=\dis \sum_{i=1}^r n_if(x_i)=f\left(\sum_{i=1}^r n_ix_i\right)$. On conclut en décomposant l'élément $g-\dis \sum_{i=1}^r n_ix_i\in \ker f$ selon la famille $\{y_1, \ldots, y_s\}$.
+\end{proof}
+
+
+
+\begin{prop}
+Soit $G$ un groupe abélien de type fini. Soit $H$ un sous-groupe de $G$. Alors le groupe abélien $H$ est de type fini.
+\end{prop}
+
+\begin{proof} \
+\begin{itemize}
+\item On suppose le groupe $G$ monogène. Si $G$ est cyclique, on sait alors que $H$ est cyclique. Sinon, on se donne un générateur $g$ de $G$ (qui sont tous d'ordre infinis). On sait que l'application $\app{\varphi}{\Z}{G}{n}{ng}$ est un isomorphisme de groupes. $H$ est isomorphe au sous-groupe $\varphi^{-1}(H)$ de $\Z$ qui s'écrit $\varphi^{-1}(H)=m\Z$ (où $m \in \N$), ie $H=\varphi(m\Z)=\{ng \mid n \in m\Z \}=<mg>$ est monogène. 
+\item Dans le cas contraire, on considère un morphisme de groupes $f$ surjectif de $\Z^r$ dans $G$, où $r \in \N^*$ désigne le cardinal de la partie génératrice de $G$ (cf preuve du corollaire précédent). Montrons par récurrence sur $r \in \N^*$ que $H$ est de type fini. \\
+Le cas $r=1$, d'après la remarque précédente, a été traité dans le premier tiret. \\
+On suppose le résultat vrai pour $r-1$ ($r \in \N^*$). On considère groupe $\Z^{r-1}$ comme sous-groupe de $\Z^r$ (via l'injection de $\Z^{r-1} \times \{0\}$ dans $\Z^{r}$). Par hypothèse de récurrence, tout sous-groupe de $K=f(\Z^{r-1})$ est de type fini. Montrons que $G/K$ est monogène : considérons le morphisme de groupes $\app{\psi}{\Z}{G/K}{a}{\overline{f(0, \ldots, 0,a)}}$. 
+Soit $\overline{g} \in G/K$. Par surjectivité de $f$, il existe $(a_1, \ldots, a_r) \in \K^r$ tel que $g=f(a_1, \ldots, a_r)$. Donc $g=\underbrace{f(a_1, \ldots, a_{r-1},0)}_{\in K}+f(0, \ldots, 0, a_r)$, ie $\overline{g}=\overline{f(0, \ldots, 0,a_r)}=\psi(a_r)$. Ainsi, $\psi$ est surjectif. \\
+On considère $\pi_H$ le morphisme de groupes canonique (surjectif) de projection de $H$ dans $G/K$. $\im \pi_H$ est un sous-groupe de $G/K$ monogène donc $\im \pi_H$ est monogène. \\
+$\ker \pi_H=\K \cap H \subset K$ est de type fini par hypothèse de récurrence. D'où, d'après la proposition précédente, $H$ est de type fini.
+\end{itemize}
+\end{proof}
 
 \end{document}
+
+
+
