@@ -314,7 +314,12 @@
 \title{Notes de cours de M305-Alg\`ebre 2}
 
 \maketitle
+
+\newpage
+
 \tableofcontents
+
+\newpage
 
 %\chapter*{Algèbre 2}
 
@@ -329,10 +334,10 @@ Le but de cette section est de donner une classification des groupes ab\'eliens.
 
 
 \begin{rem}
-Tout groupe ab\'elien $(G,+,e_G)$ peut s'identifier \`a un $\Z$-module en posant:\\
-$\app{\cdot}{\Z\times G}{G}{(n,g)}{\begin{cases}e_G & si\, n=0\\\sum_{i=1}^n g & si\, n>0\\\sum_{i=1}^{-n} (-g) & si\, n<0\end{cases}}$. On v\'erifie ais\'ement que
-$\cdot$ v\'erifie:\\
-$\forall n\in \Z,\forall (h,g)\in G\times G,\, n\cdot(h+G)=(n\cdot g)+(n\cdot h)$.
+Tout groupe ab\'elien $(G,+,0_G)$ peut s'identifier \`a un $\Z$-module en posant:
+$$\forall (n,g)\in\Z\times G,\, n\cdot g:=\begin{cases}0_G & si\, n=0\\ ((n-1)\cdot g)+g & si\, n>0\\((n+1)\cdot g) + (-g) & si\, n<0\end{cases}$$
+On v\'erifie ais\'ement que $\cdot$ est bien d\'efinie et v\'erifie:\\
+$$\forall n\in \Z,\forall (h,g)\in G\times G,\, n\cdot(h+g)=(n\cdot g)+(n\cdot h)$$
 \end{rem}
 
 \begin{depro}
