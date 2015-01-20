@@ -54,6 +54,8 @@
 \newcommand{\im}{\mathop{\mathrm{Im}}\nolimits}
 \renewcommand{\ker}{\mathop{\mathrm{Ker}}\nolimits}
 
+\newcommand{\Gt}{G_{\mathrm{tor}}}
+
 
 
 % Fonctions hyperboliques
@@ -83,7 +85,9 @@
 \newcommand{\dx}{\mathrm{d} x}
 \newcommand{\dt}{\mathrm{d} t}
 
-
+\newenvironment{ls}{\begin{list}{$\to$}{}}{\end{list}}
+\newenvironment{lls}{\begin{list}{$\ast$}{}}{\end{list}}
+\newenvironment{llls}{\begin{list}{$\cdot)$}{}}{\end{list}}
 
 
 % Topologie
@@ -323,7 +327,7 @@
 
 %\chapter*{Algèbre 2}
 
-\section{rappels de th\'eorie des groupes}
+\section{Rappels de th\'eorie des groupes}
 
 {\bf\`A compl\'eter}
 
@@ -341,7 +345,7 @@ $$\forall n\in \Z,\forall (h,g)\in G\times G,\, n\cdot(h+g)=(n\cdot g)+(n\cdot h
 \end{rem}
 
 \begin{depro}
-Soient $G$ un groupe abélien et $S$ une partie de $G$. Alors il existe un unique sous-groupe $H$ de $G$ qui contient $S$ minimal (pour l'inclusion). $H$ est appelé le \textit{sous-groupe de $G$ engendré par la partie $S$}, et noté $<S>$.
+Soient $G$ un groupe abélien et $S$ une partie de $G$. Alors il existe un unique sous-groupe $H$ de $G$ qui contient $S$ minimal (pour l'inclusion). $H$ est appelé le \textit{sous-groupe de $G$ engendré par la partie $S$}, et noté $\langle S\rangle$.
 \end{depro}
 
 \begin{proof}
@@ -349,41 +353,44 @@ On note $\mathcal{E}$ l'ensemble des sous-groupes de $G$ contenant $S$. $\mathca
 \end{proof}
 
 \begin{rem}
-Soit $G$ un groupe abélien, soit $S$ une partie de $G$. Alors $<S>$ contient l'élément neutre, et stable par additivité et passage à l'inverse. Comme $G$ est abélien, $<S>$ contient donc toutes les combinaisons linéaires d'éléments de $S$ : $<S>=\left\{\dis \sum n_is_i \mid (s_i)_{1 \leqslant i \leqslant r} \in S^r, (n_i)_{1 \leqslant i \leqslant r} \in \Z^r, r \in \N \right\}$ (un tel ensemble est bien un sous-groupe de $G$ d'où l'égalité par unicité).
+Soit $G$ un groupe abélien, soit $S$ une partie de $G$. Alors $\langle S\rangle$ contient l'élément neutre, et stable par additivité et passage à l'inverse. Comme $G$ est abélien, $\langle S\rangle$ contient donc toutes les combinaisons linéaires d'éléments de $S$, i.e.:
+$$\left\{\dis \sum_{i=1}^r n_is_i \mid (s_i)_{1 \leqslant i \leqslant r} \in S^r, (n_i)_{1 \leqslant i \leqslant r} \in \Z^r, r \in \N \right\}\subset\langle S\rangle$$
+On constate qu'un tel ensemble est de plus un sous-groupe de $G$ et donc, par unicité, on a m\^eme:
+$$\langle S\rangle=\left\{\dis \sum_{i=1}^r n_is_i \mid (s_i)_{1 \leqslant i \leqslant r} \in S^r, (n_i)_{1 \leqslant i \leqslant r} \in \Z^r, r \in \N \right\}$$
 \end{rem}
 
 \begin{defi}
 Soit $G$ un groupe abélien, soit $S$ une partie de $G$. 
 \begin{point}
-\item On dit que $S$ est u\textit{ne partie génératrice} de $G$, ou encore que $S$ engendre $G$, si $G=<S>$.
+\item On dit que $S$ est u\textit{ne partie génératrice} de $G$, ou encore que $S$ engendre $G$, si $G=\langle S\rangle$.
 \item On dit que le \textit{groupe abélien} $G$ est de \textit{type fini} s'il admet une \textit{partie génératrice finie}. 
 \end{point}
 \end{defi}
 
-Pour tout $r \in \N^*$., on note $e=(e_i)_{1 \leqslant i \leqslant r} \in (\Z^r)^r$ la base canonique de $\Z^r$ (chaque vecteur a pour ième coordonnée $1$ et $0$ ailleurs).
+Pour tout $r \in \N^*$, on note $e=(e_i)_{1 \leqslant i \leqslant r} \in \left(\Z^r\right)^r$ la base canonique de $\Z^r$ (chaque vecteur a pour i\up{ème} coordonnée $1$ et $0$ ailleurs).
 
 \exem Un groupe $G$ abélien fini est de type fini (engendré par la partie $G$ finie). \\
-Soit $r \in \N^*$. Alors $\Z^r$ est un groupe abélien de type fini (engendré par la partie $\{e_1, \ldots, e_r \}$ finie).
-
-\begin{lem}
-Soit $G$ un groupe abélien, soit $r \in \N^*$, soit $(x_1, \ldots, x_r) \in G^r$. Alors il \textit{existe un unique morphisme} de groupes $f$ du groupe $\Z^r$ dans le groupe $G$ qui, pour tout $i \in \nt{1,r}$, \textit{envoie $e_i$ sur $x_i$ $(\star)$}, donné par $\app{f}{\Z^r}{G}{(a_i)_{1 \leqslant i \leqslant r}}{\dis \sum_{i=1}^ra_ix_i}$. \\ De plus, $\im f =<\{x_1, \ldots, x_r\}>$.
+Soit $r \in \N^*$. Alors $\Z^r$ est un groupe abélien de type fini (engendré par la partie $\{e_1, \ldots, e_r \}$i
+\begin{lem}\label{morphisme-Zr-G}
+Soit $G$ un groupe abélien, soit $r \in \N^*$, soit $(x_1, \ldots, x_r) \in G^r$. Alors il \textit{existe un unique morphisme} de groupes $f$ du groupe $\Z^r$ dans le groupe $G$ qui, pour tout $i \in \nt{1,r}$, \textit{envoie $e_i$ sur $x_i$ $(\star)$}, donné par $\app{f}{\Z^r}{G}{(a_i)_{1 \leqslant i \leqslant r}}{\dis \sum_{i=1}^ra_ix_i}$. \\ De plus, $\im f =\langle\{x_1, \ldots, x_r\}\rangle$.
 \end{lem}
 
 \begin{proof}
-Un morphisme de groupes de $\Z^r$ dans $G$ vérifiant $(\star)$ est uniquement déterminé par l'image de la base canonique $e$ par décomposition d'un vecteur de $\Z^r$ dans cette base et linéarité du morphisme.
+Un morphisme de groupes de $\Z^r$ dans $G$ vérifiant $(\star)$ est uniquement déterminé par l'image de la base canonique $e$ de par la décomposition unique d'un vecteur de $\Z^r$ dans cette base et la linéarité du morphisme.
 \end{proof}
 
-\begin{coro}
+\begin{coro}\label{type-fini-et-Zr}
 Un groupe abélien est de type fini si et seulement si il existe un morphisme de groupes \textit{surjectif} du groupe $\Z^r$ dans le groupe $G$ (où $r \in \N$).
 \end{coro}
 
 \begin{proof}
-On conserve les notations de la proposition précédente. \\
-Soit $G$ un groupe abélien de type fini. Alors $G$ possède une partie génératrice finie $S=\{x_1, \ldots, x_r \}$ (où $r \in \N$), d'où $\im f=<S>=G$, ie le morphisme de groupes $f$ de $\Z^r$ dans $G$ est surjectif. \\
-Réciproquement, soit $g$ un morphisme de groupes surjectif de $\Z^r$ (où $r \in \N$) dans $G$ , alors $S=\{f(e_1), \ldots, f(e_r) \}$ est une partie génératrice de $G$ (car tout élément de $G$ possède un antécédent dans $\Z^r$ qui se décompose dans la base canonique $e$, donc son image, ie $g$, s'écrit comme combinaison linéaire d'éléments de $S$). 
+On conserve les notations du lemme~\ref{morphisme-Zr-G}. \\
+Soit $G$ un groupe abélien de type fini. Alors $G$ possède une partie génératrice finie $S=\{x_1, \ldots, x_r \}$ (où $r \in \N$), d'où $\im f=\langle S\rangle=G$,
+i.e. le morphisme de groupes $f$ de $\Z^r$ dans $G$ est surjectif. \\
+Réciproquement, soit $g$ un morphisme de groupes surjectif de $\Z^r$ (où $r \in \N$) dans $G$ , alors $S=\{f(e_1), \ldots, f(e_r) \}$ est une partie génératrice de $G$ (car tout élément de $G$ possède un antécédent dans $\Z^r$ qui se décompose dans la base canonique $e$, donc son image, i.e. $g$, s'écrit comme combinaison linéaire d'éléments de $S$). 
 \end{proof}
 
-\begin{prop}
+\begin{prop}\label{image-type-fini}
 Soient $G$ et $H$ deux groupes abéliens. Soit $f$ un morphisme de groupes de $G$ dans $H$. On suppose que le groupe abélien $G$ est de type fini. Alors le groupe abélien $\im f$ est de type fini.
 \end{prop}
 
@@ -392,10 +399,14 @@ Soit $S$ une partie génératrice de $G$. Alors $f(S)$ est une partie génératr
 \end{proof}
 
 \begin{coro}
-
+Soit $G$ un groupe ab\'elien de type fini et $H$ un sous-groupe de $G$. Alors le quotient $G/H$ est de type fini.
 \end{coro}
 
-\begin{prop}
+\begin{proof}
+Il suffit d'appliquer la proposition~\ref{image-type-fini} \`a la sujection canonique $\pi:G\to G/H$.
+\end{proof}
+
+\begin{prop}\label{g-type-fini-par-morphisme}
 Soient $G$ et $H$ deux groupes abéliens. Soit $f$ un morphisme de groupes de $G$ dans $H$. On suppose que les groupes abéliens $\im f$ et $\ker f$ sont de \textit{type fini}. Alors $G$ est un groupe abélien de type fini.
 \end{prop}
 
@@ -403,22 +414,84 @@ Soient $G$ et $H$ deux groupes abéliens. Soit $f$ un morphisme de groupes de $G
 Par hypothèse, il existe $(x_1, \ldots, x_r) \in G^r$ tel que la partie finie $\{f(x_1), \ldots, f(x_r) \}$ engendre $\im f$ et il existe $(y_1, \ldots, y_r) \in (\ker f)^s$ tel que la partie finie $\{y_1, \ldots, y_s \}$ engendre $\ker f$. Soit $g \in G$. Alors il existe $(n_1, \ldots, n_r) \in \Z^r$ tel que $f(g)=\dis \sum_{i=1}^r n_if(x_i)=f\left(\sum_{i=1}^r n_ix_i\right)$. On conclut en décomposant l'élément $g-\dis \sum_{i=1}^r n_ix_i\in \ker f$ selon la famille $\{y_1, \ldots, y_s\}$.
 \end{proof}
 
-
-
 \begin{prop}
 Soit $G$ un groupe abélien de type fini. Soit $H$ un sous-groupe de $G$. Alors le groupe abélien $H$ est de type fini.
 \end{prop}
 
-\begin{proof} \
-\begin{itemize}
-\item On suppose le groupe $G$ monogène. Si $G$ est cyclique, on sait alors que $H$ est cyclique. Sinon, on se donne un générateur $g$ de $G$ (qui sont tous d'ordre infinis). On sait que l'application $\app{\varphi}{\Z}{G}{n}{ng}$ est un isomorphisme de groupes. $H$ est isomorphe au sous-groupe $\varphi^{-1}(H)$ de $\Z$ qui s'écrit $\varphi^{-1}(H)=m\Z$ (où $m \in \N$), ie $H=\varphi(m\Z)=\{ng \mid n \in m\Z \}=<mg>$ est monogène. 
-\item Dans le cas contraire, on considère un morphisme de groupes $f$ surjectif de $\Z^r$ dans $G$, où $r \in \N^*$ désigne le cardinal de la partie génératrice de $G$ (cf preuve du corollaire précédent). Montrons par récurrence sur $r \in \N^*$ que $H$ est de type fini. \\
-Le cas $r=1$, d'après la remarque précédente, a été traité dans le premier tiret. \\
-On suppose le résultat vrai pour $r-1$ ($r \in \N^*$). On considère groupe $\Z^{r-1}$ comme sous-groupe de $\Z^r$ (via l'injection de $\Z^{r-1} \times \{0\}$ dans $\Z^{r}$). Par hypothèse de récurrence, tout sous-groupe de $K=f(\Z^{r-1})$ est de type fini. Montrons que $G/K$ est monogène : considérons le morphisme de groupes $\app{\psi}{\Z}{G/K}{a}{\overline{f(0, \ldots, 0,a)}}$. 
-Soit $\overline{g} \in G/K$. Par surjectivité de $f$, il existe $(a_1, \ldots, a_r) \in \K^r$ tel que $g=f(a_1, \ldots, a_r)$. Donc $g=\underbrace{f(a_1, \ldots, a_{r-1},0)}_{\in K}+f(0, \ldots, 0, a_r)$, ie $\overline{g}=\overline{f(0, \ldots, 0,a_r)}=\psi(a_r)$. Ainsi, $\psi$ est surjectif. \\
-On considère $\pi_H$ le morphisme de groupes canonique (surjectif) de projection de $H$ dans $G/K$. $\im \pi_H$ est un sous-groupe de $G/K$ monogène donc $\im \pi_H$ est monogène. \\
-$\ker \pi_H=\K \cap H \subset K$ est de type fini par hypothèse de récurrence. D'où, d'après la proposition précédente, $H$ est de type fini.
-\end{itemize}
+\begin{proof}
+\begin{ls}
+\item Supposons le groupe $G$ monogène. Si $G$ est cyclique, on sait alors que $H$ est cyclique. Sinon, on se donne un générateur $g$ de $G$ (qui est donc d'ordre infini). On sait que l'application $\app{\varphi}{\Z}{G}{n}{ng}$ est un isomorphisme de groupes. $H$ est isomorphe au sous-groupe $\varphi^{-1}(H)$ de $\Z$ qui s'écrit donc $\varphi^{-1}(H)=m\Z$ (où $m \in \N$), i.e. $H=\varphi(m\Z)=\{ng \mid n \in m\Z \}=\langle mg\rangle$ i.e. $H$ est monogène. 
+\item Dans le cas contraire, on considère un morphisme de groupes $f:\Z^r\to G$ surjectif, où $r \in \N^*$ désigne le cardinal de la partie génératrice de $G$ (cf preuve du corollaire~\ref{type-fini-et-Zr}). Montrons par récurrence sur $r \in \N^*$ que $H$ est de type fini:
+\begin{lls}
+	\item\underline{Initialisation $r=1$:} C'est le cas o\`u $G$ est monog\`ene et a donc d\'ej\`a été traité dans le premier point de cette preuve.
+	\item\underline{H\'er\'edit\'e:} Supposons le résultat vrai pour $r-1$ ($r \in \N^*$). Considèrons le groupe $\Z^{r-1}$ comme sous-groupe de $\Z^r$ (via l'injection de $\Z^{r-1} \times \{0\}$ dans $\Z^{r}$). Par hypothèse de récurrence, tout sous-groupe de $K=f(\Z^{r-1})$ est de type fini. Montrons que $G/K$ est monogène : considérons le morphisme de groupes $\app{\psi}{\Z}{G/K}{a}{\overline{f(0, \ldots, 0,a)}}$. 
+Soit $\overline{g} \in G/K$. Par surjectivité de $f$, il existe $(a_1, \ldots, a_r) \in \Z^r$ tel que $g=f(a_1, \ldots, a_r)$. Donc $g=\underbrace{f(a_1, \ldots, a_{r-1},0)}_{\in K}+f(0, \ldots, 0, a_r)$, i.e. $\overline{g}=\overline{f(0, \ldots, 0,a_r)}=\psi(a_r)$. Ainsi, $\psi$ est surjectif, et donc $G/K$ est monog\`ene d'apr\`es ce qui a \'et\'e montr\'e au premier point de cette preuve.\\
+Soit $H$ un sous-groupe de $G$.
+Considèrons $\pi_H:H\to G/K$ la restriction \`a $H$ de la surjection canonique. $\im \pi_H$ est un sous-groupe de $G/K$ monogène, donc $\im \pi_H$ est monogène. \\
+$\ker \pi_H=K \cap H \subset K$ est de type fini par hypothèse de récurrence. D'après la proposition~\ref{g-type-fini-par-morphisme}, on a donc que $H$ est de type fini.
+\end{lls}
+\end{ls}
+\end{proof}
+
+\begin{defi}\hspace{.1em}
+\begin{ls}
+\item Soit $G$ un groupe quelconque:
+\begin{lls}
+\item Soit $g \in G$. On dit que l'élément $g$ \textit{est de torsion} si $g$ est d'ordre fini.
+\item On dit que le groupe $G$ est \textit{de torsion} si tout élément de $G$ est de torsion.
+\item On dit que le groupe $G$ est \textit{sans torsion} si tout élément de $G$ non nul est d'ordre infini.
+\end{lls}
+
+\item Si $G$ est de plus abélien, on dit que $G$ est \textit{libre de type fini} s'il existe $r \in \N$ tel que $G$ soit isomorphe à $\Z^r$.\\
+Dans ce cas, on a:
+\begin{lls}
+\item Soit $(x_1, \ldots, x_r) \in G^r$.  On dit que les éléments $x_1, \ldots, x_r$ forment une famille libre, ou encore sont linéairement indépendants, si:
+$$\forall (n_1, \ldots, n_r) \in \Z^r,\, \left(\dis \sum_{i=1}^r n_ix_i=0\implies\forall i \in \nt{1,r}, n_i=0\right)$$
+\item On dit que les éléments $x_1, \ldots, x_r$ forment une base de $G$ si ils forment une famille libre et génératrice de $G$.
+\end{lls}
+\end{ls}
+\end{defi}
+
+\begin{depro}\label{def-groupe-torsion}
+Soit $G$ un groupe abélien.
+\begin{point}
+\item Il existe un unique sous-groupe $H$ de $G$ de torsion qui contient tout sous-groupe de $G$ de torsion. $H$ est appelé le sous-groupe de torsion de $G$, et est noté $\Gt$.
+\item Le groupe quotient $G/\Gt$ est sans torsion.
+\item Soit $(x_1, \ldots, x_r)  \in G^r$. Alors la famille  $(x_1, \ldots, x_r)$ est libre si et seulement si le morphisme de groupes $f:\Z^r\to G$ du lemme~\ref{morphisme-Zr-G} est injectif.
+\end{point}
+\end{depro}
+
+\begin{proof}\hspace{.1em}
+\begin{point}
+\item Le sous-ensemble $H$ de $G$ constitué de l'ensemble des éléments de torsion de $G$ est un sous-groupe de torsion de $G$ (l'élément nul est d'ordre $1$, la somme de deux éléments de torsion est d'ordre le ppcm des ordres, et l'ordre de l'inverse d'un élément de torsion est inchangé) et contient tout sous-groupe de torsion par construction.
+\item Soit $\overline{g} \in G/\Gt$ de torsion : il existe $n \in \N^*$ tel que $n\overline{g}=\overline{ng}=\overline{0}$, i.e. $ng \in \Gt$ : il existe $m \in \N^*$ tel que $mng=0$ d'où $g$ est de torsion, i.e. $\overline{g}=\overline{0}$. Donc $G/\Gt$ est sans torsion.
+\item $f$ est injectif si et seulement si $\ker f=\left\{(a_i)_{1 \leqslant i \leqslant r} \in \Z^r \mid \dis \sum_{i=1}^r a_ix_i=0\right\}=\{0_{\Z^r}\}$.
+\end{point}
+\end{proof}
+
+\begin{coro}
+Soit $G$ un groupe abélien de type fini. Alors $G$ est libre de type fini si et seulement si il admet une base.
+\end{coro}
+
+%\begin{proof}Soit $\{x_1, \ldots ,x_r\}$ une partie gnratrice de $G$. Alors, le groupe ablien $G$ est de type fini est libre si et seulement si $F$ est un morphism  e de groupes injectif ($F$ tant surjectif car $G$ de type fini, $F$ est alors un isomorphisme par cardinalit), soit si et seulement si (d'après la proposition prc  dente) $(x_1, \ldots, x_r)$ est libre, ie est une base (tant gnratrice de $G$).
+%\end{proof}
+%on ne peut pas utiliser ici la cardinalit\'e, car ce sont des espaces infinis, et on ne peut pas utiliser l'alg\`ebre lin\'eaire, car on n'a pas de r\'esultats sur les modules
+
+\begin{proof}\hspace{.1em}\\
+\underline{$\Rightarrow$} Supposons $G$ libre de type fini et soit $r\in\N$ tel que $f:\Z^r\to G$ soit un isomorphisme de groupes. Soit $(x_1, \ldots ,x_r)=(f(e_1),\ldots, f(e_r))$ les images de la base canonique $e=(e_i)_{1\leqslant i\leqslant r}$ de $\Z^r$ par $f$. Soit $z\in\Z^r$ et $(a_1,\ldots,a_r)\in\Z^r$ tel que $z=\dis\sum_{i=1}^r a_ie_i$. On a donc:
+$$f(z)=f(\dis\sum_{i=1}^r a_i e_i)\stackrel{\textrm{$f$ morphisme}}{=}\dis\sum_{i=  1}^r a_if(e_i)=\dis\sum_{i=  1}^r a_ix_i$$
+$f$ est donc de la forme du lemme~\ref{morphisme-Zr-G} et de par la proposition-d\'efinition~\ref{def-groupe-torsion}, on a que $(x_1, \ldots ,x_r)$ est libre. De plus par isomorphisme on a que $\{x_1, \ldots ,x_r\}$ est génératrice de $G$. $(x_1, \ldots ,x_r)$ est donc une base de $G$.\\
+\underline{$\Leftarrow$} Soit $(x_1, \ldots ,x_r)$ une base de $G$ et soit $f$ le morphisme du lemme~\ref{morphisme-Zr-G} associ\'e. Alors d'apr\`es la proposition-d\'efinition~\ref{def-groupe-torsion}, $f$ est injectif et d'apr\`es la preuve du corollaire~\ref{type-fini-et-Zr}, $f$ est surjectif, i.e. $f$ est un isomorphisme de groupes.
+\end{proof}
+
+\begin{prop}
+Soit $G$ un groupe abélien de type fini, alors le groupe de torsion $\Gt$ est fini.
+\end{prop}
+
+\begin{proof}
+Soit $\{x_1, \ldots ,x_r\}$ une partie génératrice de $\Gt$ (licite car $\Gt$ est de type fini comme sous-groupe d'un groupe de type fini). Pour tout $i \in \nt{1,r}$, on note $n_i$ l'ordre de l'élément $x_i$. On considère le morphisme de groupes $\app{\varphi}{\Z/n_1\Z \times \cdots \times \Z/n_r\Z}{G}{(\overline{a_1}, \ldots, \overline{a_r})}{\dis \sum_{i=1}^r a_ix_i}$.\\
+$\varphi$ est bien défini car pour tout $(\overline{a_1}, \ldots, \overline{a_r})=(\overline{b_1}, \ldots, \overline{b_r}) \in \Z/n_1\Z \times \cdots \times \Z/n_r\Z$, $(a_i-b_i)\in n_i\Z$, donc $n_i=ordre(x_i)\mid (a_i-b_i)$ et donc $\dis \sum_{i=1}^r \underbrace{(a_i-b_i)x_i}_{=0}=0$.\\
+De plus $\varphi$ est surjectif par construction  donc $\vert G \vert \leqslant \dis \prod_{i=1}^r n_i \in \N^*$ i.e. $G$ est fini.
 \end{proof}
 
 \end{document}
