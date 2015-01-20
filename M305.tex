@@ -317,7 +317,18 @@
 
 \title{Notes de cours de M305-Alg\`ebre 2}
 
-\maketitle
+%\maketitle
+\makeatletter
+\begin{titlepage}
+    \vspace*{\fill}
+    \begin{center}
+      {\Huge \@title}\\[0.5cm]
+%      {\Large \@author}\\[0.4cm]
+      {\Large \@date}
+    \end{center}
+    \vspace*{\fill}
+\end{titlepage}
+\makeatother
 
 \newpage
 
@@ -331,7 +342,7 @@
 
 {\bf\`A compl\'eter}
 
-\section{Groupes abéliens de type fini}
+\section{Groupes ab\'eliens de type fini}
 
 Le but de cette section est de donner une classification des groupes ab\'eliens. On va s'int\'eresser pour cela \`a une sous-cat\'egorie de groupes ab\'eliens: les groupes abliens de type fini. Dans toutes cette section la loi des groupes consid\'er\'es sera $+$ sauf mention contraire explicite.
 
