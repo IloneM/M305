@@ -1,5 +1,6 @@
 # M305
 Notes de cours du module d'Algèbre M305 du [L3-MFA](http://webens-ng.math.u-psud.fr/L3/#Specification MFA) de l'[Université Paris Sud](http://www.u-psud.fr/fr/index.html)
+
 Réalisées d'après l'enseignement de [François Charles] (http://www.math.u-psud.fr/~fcharles/)
 
 ## Notes à l'intention des étudiants de L3-MFA
@@ -11,6 +12,9 @@ Liste des auteurs actifs:
 + Nilo Schwencke
 + Cyril Falcon
 
+## Licence d'utilisation
+Les fichiers téléchargeables peuvent-être utilisés sans aucune contraintes, mais ne peuvent être modifiés sans faire l'object d'une redistribution open-source.
+Se référer à la [licence complète](https://github.com/IloneM/M305/raw/master/LICENSE) pour plus d'informations.
 
 ## Vous souhaitez contribuer?
 Alors soyez le bienvenue! Vous pouvez commencer dès maintenant en suivant les instructions ci-dessous:
@@ -216,7 +220,3 @@ Même si les instructions ci-dessus sont en théorie suffisantes pour que tout f
 +http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Gestion-de-branches
 +http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Les-branches-distantes
 La lecture de tout le [chapitre 3](http://git-scm.com/book/fr/v1/Les-branches-avec-Git) voire de [tout le tutoriel](http://git-scm.com/book/fr/v1) est évidemment souhaitable, mais ne devrait pas être indispensable pour l'utilisation qui est faite de git dans ce projet.
-
-## Licence d'utilisation
-Les fichiers téléchargeables peuvent-être utilisés sans aucune contraintes, mais ne peuvent être modifiés sans faire l'object d'une redistribution open-source.
-Se référer à la [licence complète](https://github.com/IloneM/M305/raw/master/LICENSE) pour plus d'informations.
