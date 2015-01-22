@@ -13,7 +13,7 @@ Liste des auteurs actifs:
 + Cyril Falcon
 
 ## Licence d'utilisation
-Les fichiers téléchargeables peuvent-être utilisés sans aucune contraintes, mais ne peuvent être modifiés sans faire l'object d'une redistribution open-source.
+Les fichiers téléchargeables peuvent-être utilisés sans aucune contrainte, mais ne peuvent être modifiés sans faire l'object d'une redistribution open-source.
 Se référer à la [licence complète](https://github.com/IloneM/M305/raw/master/LICENSE) pour plus d'informations.
 
 ## Vous souhaitez contribuer?
