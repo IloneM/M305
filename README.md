@@ -7,12 +7,9 @@ Le cours est actuellement en construction, il est donc possible qu'il ne soit pa
 Malgré nos efforts de relecture, il est possible qu'il reste des "coquilles" ça et là. Si vous en repérez une, merci de bien vouloir nous la signaler par email (nos adresses sont disponibles sur les listes de diffusions des emails, envoyés par le secrétariat par exemple).
 
 Liste des auteurs actifs:
-
-+Jade Salmon
-
-+Nilo Schwencke
-
-+Cyril Falcon
++ Jade Salmon
++ Nilo Schwencke
++ Cyril Falcon
 
 
 ## Vous souhaitez contribuer?
