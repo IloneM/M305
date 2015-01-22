@@ -21,9 +21,11 @@ N.B.: il est nécessaire de maîtriser au moins les bases de [LaTeX](http://www.
 1 	Installer [git](http://git-scm.com/)
 
 2 	Exécuter sur un terminal:
+
 	```
 	git clone -b build https://github.com/IloneM/M305 chemin_vers_repertoire
 	```
+
 	Où chemin\_vers\_repertoire désigne un chemin vers un répertoire vide sur l'ordinateur local.
 	Vous avez désormais accès à la dernière version du projet et vous pouvez commencer à travailler dessus!
 4 	Se créer un compte sur [https://github.com/](https://github.com/)
@@ -35,12 +37,16 @@ N.B.: il est nécessaire de maîtriser au moins les bases de [LaTeX](http://www.
 Pour partager votre contribution et bénéficier de celles des autres auteurs, effectuer les instructions suivantes:
 
 ### Cycle courant d'instructions à répéter à chaque mise à jour depuis (pull) ou vers (push) le serveur
+
 1 	Exécuter les commandes suivantes:
+
 	```
 	git fetch origin
 	git pull
 	```
+
 2 	À cette étape, il est possible que git indique qu'il y a des "Conflits de fusions" ("Merge conflict"), c'est à dire des incompatibilités entre les fichiers distants et les fichiers locaux. Si ce n'est pas le cas, passer directement à l'étape suivante. Sinon, git indiquera également quels sont les fichiers posant problème. Ouvrir un de ces fichiers. Chercher alors dans le fichier un block de texte de cette forme:
+
 	```
 	<<<<<<< HEAD
 	tata
@@ -48,8 +54,10 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	toto
 	>>>>>>> "une longue chaîne de caractères alphanumérques"
 	```
+
 	Ce qui est entre *<<<<<<< HEAD* et *=======* correspond à la version locale du fichier et ce qui est entre *=======* et *>>>>>>> "une longue chaîne de caractères alphanumérques"* correspond à la version distante du fichier.
 	Il faut alors "résoudre le conflit", c'est à dire écrire explicitement le texte qui se trouvera à cet endroit (en général un mix des deux versions). Par exemple le conflit ci-dessus pourrait être résolue en remplaçant:
+
 	```
 	<<<<<<< HEAD
 	tata
@@ -57,15 +65,21 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	toto
 	>>>>>>> "une longue chaîne de caractères alphanumérques"
 	```
+
 	par:
+
 	```
 	toto et tata
 	```
+
 	Une fois que tous les conflits d'un fichier sont résolus, exécuter la commande:
+
 	```
 	git commit -a
 	```
+
 	L'éditeur de texte de votre ordinateur affichera alors un fichier texte de cette forme:
+
 	```
 	Merge branch 'build' of https://github.com/IloneM/M305 into build
 
@@ -91,7 +105,9 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	#       modified:   M305.tex
 	#
 	```
+
 	Effacer les croisillons (signe '#') devant les lignes commençant par "modified:" et enregistrer. Par exemple le fichier texte ci-dessus deviendra après modifications:
+
 	```
 	Merge branch 'build' of https://github.com/IloneM/M305 into build
 
@@ -120,20 +136,25 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	```
 
 	Recommencer ensuite pour tous les fichiers présentant un conflit (heuresement peu nombreux en général); en cas d'oubli des fichiers concérnés, les commandes:
+
 	```
 	# sous linux:
 	git ls-files -u | cut -f 2 | sort -u
 	# ou sur tout os (regarder les lignes commençant par 'U')
 	git pull
 	```
+
 	rappeleront tous les conflits restant à traiter.
 
 3 	*Cette étape n'est à suivre que si vous souhaitez modifier des fichiers*
 	Modifier les fichiers selon votre convenance. Il est conseillé de taper la commande suivante après chaque modification ou séries de modifications importante:
+
 	```
 	git commit -a
 	```
+
 	L'éditeur de texte de votre ordinateur affichera alors un fichier texte de cette forme:
+
 	```
 	# Please enter the commit message for your changes. Lines starting
 	# with '#' will be ignored, and an empty message aborts the commit.
@@ -146,7 +167,9 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	#
 
 	```
+
 	Décommenter les lignes en dessous de *# Changes to be committed:* puis ajouter éventuellement un message (cela est fortement conseillé!) décrivant les modifications apportées en haut du fichier puis enfin enregistrer. Par exemple le fichier texte ci-dessus deviendra après modifications:
+
 	```
 	Un message pour décrire les modifications
 	avec éventuellement plusieurs lignes
@@ -162,29 +185,42 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	#
 
 	```
+
 	Il est également possible d'utiliser une version légérement modifiée de la commande ci-dessus qui permet de joindre le message directement et de ne pas avoir à éditer le fichier text:
+
 	```
 	git commit -a -m "mon message"
+
 	```
+
 	S'il est nécessaire d'annuler une modification (un commit), cela peut-être réalisée au moyen de la commande suivante (**à utiliser avec précaution! Les modifications peuvent être perdue définitivement!**):
+
 	```
 	git commit --amend
 	```
+
 	**Une fois les modifications terminées retourner à l'étape 1 avant de procéder à la mise à jour vers le serveur (push) en sautant cette étape, passant ainsi directement à l'étape 4**
 
 4 	Arriver à cette étape, il ne reste plus qu'à sauvegarder sur le serveur au moyen de la commande suivante:
+
 	```
 	git push origin build
 	```
+
 	Le terminal devrait alors vous demander votre identifiant github (créer lors des instructions pour débuter):
+
 	```
 	Username for 'https://github.com': 
 	```
+
 	Puis une fois celui entrer, votre mot de passe github:
+
 	```
 	Password for 'https://Ilonem@github.com': 
 	```
+
 	Si tout se passe bien vous devriez voir apparaître quelque chos comme cela:
+
 	```
 	Counting objects: 9, done.
 	Delta compression using up to 8 threads.
@@ -193,14 +229,17 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	Total 9 (delta 6), reused 0 (delta 0)
 	To https://github.com/IloneM/M305
 	   b3fc173..150a9ac  build -> build
-
 	```
+
 	Sinon, ce peut être un problème d'identifiants:
+
 	```
 	remote: Invalid username or password.
 	fatal: Authentication failed for 'https://github.com/IloneM/M305/'
 	```
+
 	Ou bien ce peut être un "conflit de fusions":
+
 	```
 	To https://github.com/IloneM/M305
 	 ! [rejected]        build -> build (fetch first)
@@ -211,6 +250,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	hint: (e.g., 'git pull ...') before pushing again.
 	hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 	```
+
 	Ceci se produit si, par malheur, quelqu'un vous a devancé et a réalisé un "push" juste avant vous, auquel cas, il faut recommencer tout ce cycle d'instructions (en sautant l'étape 3)... Heuresment ce type d'incident ne devrait se produire que très très rarement!
 
 ### Pour aller plus loin
