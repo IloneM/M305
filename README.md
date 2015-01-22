@@ -35,13 +35,12 @@ N.B.: il est nécessaire de maîtriser au moins les bases de [LaTeX](http://www.
 Pour partager votre contribution et bénéficier de celles des autres auteurs, effectuer les instructions suivantes:
 
 ### Cycle courant d'instructions à répéter à chaque mise à jour depuis (pull) ou vers (push) le serveur
-1
+1 	Exécuter les commandes suivantes:
 	```
 	git fetch origin
 	git pull
 	```
-2
-	À cette étape, il est possible que git indique qu'il y a des "Conflits de fusions" ("Merge conflict"), c'est à dire des incompatibilités entre les fichiers distants et les fichiers locaux. Si ce n'est pas le cas, passer directement à l'étape suivante. Sinon, git indiquera également quels sont les fichiers posant problème. Ouvrir un de ces fichiers. Chercher alors dans le fichier un block de texte de cette forme:
+2 	À cette étape, il est possible que git indique qu'il y a des "Conflits de fusions" ("Merge conflict"), c'est à dire des incompatibilités entre les fichiers distants et les fichiers locaux. Si ce n'est pas le cas, passer directement à l'étape suivante. Sinon, git indiquera également quels sont les fichiers posant problème. Ouvrir un de ces fichiers. Chercher alors dans le fichier un block de texte de cette forme:
 	```
 	<<<<<<< HEAD
 	tata
@@ -173,8 +172,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 	```
 	**Une fois les modifications terminées retourner à l'étape 1 avant de procéder à la mise à jour vers le serveur (push) en sautant cette étape, passant ainsi directement à l'étape 4**
 
-4
-	Arriver à cette étape, il ne reste plus qu'à sauvegarder sur le serveur au moyen de la commande suivante:
+4 	Arriver à cette étape, il ne reste plus qu'à sauvegarder sur le serveur au moyen de la commande suivante:
 	```
 	git push origin build
 	```
