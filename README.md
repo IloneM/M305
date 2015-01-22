@@ -1,4 +1,4 @@
-# M305 : À propos
+# À propos
 Notes de cours du module d'Algèbre M305 du [L3-MFA](http://webens-ng.math.u-psud.fr/L3/#Specification MFA) de l'[Université Paris Sud](http://www.u-psud.fr/fr/index.html) réalisées d'après l'enseignement de [François Charles] (http://www.math.u-psud.fr/~fcharles/).
 
 ## Notes à l'intention des étudiants de L3-MFA
@@ -217,4 +217,5 @@ Même si les instructions ci-dessus sont en théorie suffisantes pour que tout f
 + http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Brancher-et-fusionner%C2%A0%3A-les-bases
 + http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Gestion-de-branches
 + http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Les-branches-distantes
+
 La lecture de tout le [chapitre 3](http://git-scm.com/book/fr/v1/Les-branches-avec-Git) voire de [tout le tutoriel](http://git-scm.com/book/fr/v1) est évidemment souhaitable, mais ne devrait pas être indispensable pour l'utilisation qui est faite de git dans ce projet.
