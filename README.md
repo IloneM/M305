@@ -22,7 +22,7 @@ N.B.: il est nécessaire de maîtriser au moins les bases de [LaTeX](http://www.
 
 2. 	Exécuter sur un terminal:
 		
-		```
+		```c
 		git clone -b build https://github.com/IloneM/M305 chemin_vers_repertoire
 		```
 
