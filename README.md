@@ -22,12 +22,13 @@ N.B.: il est nécessaire de maîtriser au moins les bases de [LaTeX](http://www.
 
 2 	Exécuter sur un terminal:
 
-```
+	```
 	git clone -b build https://github.com/IloneM/M305 chemin_vers_repertoire
-```
+	```
 
 	Où chemin\_vers\_repertoire désigne un chemin vers un répertoire vide sur l'ordinateur local.
 	Vous avez désormais accès à la dernière version du projet et vous pouvez commencer à travailler dessus!
+
 4 	Se créer un compte sur [https://github.com/](https://github.com/)
 
 3 	Demander par email à l'adresse iblobnembabiblb2@gbmabibl.cbobm (enlever les 'b') à devenir contributeur en précisant *votre pseudo github*, qui vous êtes et éventuellement pourquoi et comment voulez vous contribuer.
