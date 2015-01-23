@@ -210,7 +210,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 		hint: (e.g., 'git pull ...') before pushing again.
 		hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
-	Ceci se produit si, par malheur, quelqu'un vous a devancé et a réalisé un "push" juste avant vous, auquel cas, il faut recommencer tout ce cycle d'instructions (en sautant l'étape 3)... Heuresment ce type d'incident ne devrait se produire que très très rarement!
+	Ceci se produit si, par malheur, quelqu'un vous a devancé et a réalisé un "push" juste avant vous, auquel cas, il faut recommencer tout ce cycle d'instructions (en sautant l'étape 3)... Heuresement ce type d'incident ne devrait se produire que très très rarement!
 
 ### Pour aller plus loin
 Même si les instructions ci-dessus sont en théorie suffisantes pour que tout fonctionne correctement, pour plus de commodité à l'utilisation et afin d'éviter au maximum les erreurs, il est vivement conseillé de lire les pages suivantes:
