@@ -177,15 +177,15 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 
 		git push origin build
 
-	Le terminal devrait alors vous demander votre identifiant github (créer lors des instructions pour débuter):
+	Le terminal devrait alors vous demander votre identifiant github (crée lors des instructions pour débuter):
 
 		Username for 'https://github.com': 
 
-	Puis une fois celui entrer, votre mot de passe github:
+	Puis une fois celui-ci entrer, votre mot de passe github:
 
 		Password for 'https://Ilonem@github.com': 
 
-	Si tout se passe bien vous devriez voir apparaître quelque chose comme cela:
+	Si tout se passe bien, vous devriez voir apparaître quelque chose comme cela:
 
 		Counting objects: 9, done.
 		Delta compression using up to 8 threads.
