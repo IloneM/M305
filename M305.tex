@@ -505,6 +505,90 @@ $\varphi$ est bien défini car pour tout $(\overline{a_1}, \ldots, \overline{a_r
 De plus $\varphi$ est surjectif par construction  donc $\vert G \vert \leqslant \dis \prod_{i=1}^r n_i \in \N^*$ i.e. $G$ est fini.
 \end{proof}
 
+\subsection{Théorèmes de structure}
+
+\begin{rem}
+Soit $\K$ un corps. Soit $E$ un $\K$-espace vectoriel sur le corps $\K$ de dimension finie. Soit $F$ un sous-espace vectoriel de $E$. Alors $F$ admet un supplémentaire $S$ dans $E$. On considère l'application linéaire $f$ de projection de $E$ dans $E/F$ restreint à $S$. Alors $f$ est  injectif (car $\ker f = F \cap S =\{0\}$ et surjective (car tout élément de $E/F$ admet un représentant appartenant à $S$ en utilisant la décomposition de $E$), ie $S$ et $E/F$ sont isomorphes. \\
+
+Soit $G$ un groupe abélien de type fini. \\ 
+
+Soit $H$ un sous-groupe de $G$.On cherche à déterminer, quand il existe, l'analogue d'un supplémentaire pour $H$, ie un sous-groupe $H'$ de $G$ tel que $H \times H'$ soit isomorphe à $G$, ou de manière équivalente, un isomorphisme de groupes de $H'$ dans $G/H$. \
+Par exemple, tout sous-groupe $H'$ de $\Z$ isomorphe à $\Z/2\Z$ serait immédiatement de torsion, ce qui n'est pas possible puisque $\Z$ est sans torsion. \
+On peut également se demander si tout groupe abélien $G$ de type fini admet une base. Ce n'est jamais le cas si $\Gt$ n'est pas réduit à l'élément nul. Par exemple, l'élément $\overline{1} \in \Z/2\Z$ (de torsion puisque d'ordre 2) ne forme pas une base de $\Z/2\Z$. \\
+\end{rem}
+
+Par l'existence d'une surjection de $\Z^r$ dans $G$ et par le théorème de factorisation, $G$ est isomorphe au groupe quotient $\Z^r/\ker f$. Nous allons donc dans un premier temps chercher à comprendre la structure des sous-groupes de $\Z^r$. 
+
+On note $\textrm{GL}_n(\Z)$ le groupe des matrices carrées de taille $n$ inversibles à coefficients dans l'anneau $\Z$ telles que l'inverse soit aussi à coefficients dans $\Z$.
+
+\begin{lem}
+Soit $A \in \textrm{GL}_n(\Q) \cap \mathcal{M}_n(\Z)$. Alors $A \in \textrm{GL}_n(\Z)$ si et seulement si $\vert \det A \vert =1$.
+\end{lem}
+
+\begin{proof}
+On suppose $A \in \textrm{GL}_n(\Z)$. Alors $(A, A^{-1}) \in \mathcal{M}_n(\Z)^2$. Comme $\underbrace{(\det A)}_{\in \Z}\underbrace{(\det A^{-1})}_{\in \Z}=1$, $\det A$ est un élément inversible du groupe $\Z$, donc égal à $1$ ou $-1$. La réciproque vient de la formule de la comatrice.
+\end{proof}
+
+\begin{theo}
+Soit $A \in \mathcal{M}_{mn}(\Z)$. Alors il existe $P \in \textrm{GL}_n(\Z)$ et $Q \in \textrm{GL}_m(\Z)$ tels que $PAQ^{-1}=\left(
+ \begin{array}{cccccc}
+   d_1\\
+   & \ddots & & & \text{\huge0} \\
+    &  & d_r & \\
+    & & \\
+    & \text{\huge0} & & & \text{\huge0} \\
+    & & & & 
+ \end{array}
+\right)$, où $ r \in \N$ et la famille $(d_i)_{1 \leqslant i \leqslant r} \in (\Z^*)^r$ vérifie $d_1 \vert \ldots \vert d_r$. De plus, ces coefficients sont uniquement déterminés par la matrice $A$, et appelés les \textit{facteurs invariants de $A$}.
+\end{theo}
+
+\begin{rem}
+Ce théorème est l'équivalent de la forme réduite standard à équivalence près d'une matrice à coefficients dans le corps $\C$.
+\end{rem}
+
+\begin{prop}
+Soit $G$ un \textit{groupe abélien libre de type fini}. On note $n$ le cardinal d'une base de $G$. Alors toute famille d'éléments linéairement indépendants de $G$ admet au plus $n$ éléments.
+\end{prop}
+
+\begin{proof}$G$ étant isomorphe à $\Z^n$ pour un certain $n \in \N$ et comme un isomorphisme de groupe échange les familles libres, il suffit de raisonner sur une famille $\mathcal{F}$ libre d'éléments de $\Z^n$. $\mathcal{F}$ est alors $\Q$-libre (quitte à multiplier une combinaison linéaire par un dénominateur commun) donc forme une famille libre du $\Q$-espace vectoriel $\Q^n$. Donc $\vert \mathcal{F} \vert \leqslant n$.
+\end{proof}
+
+\begin{rem}
+Il n'y a pas d'analogue du théorèmes de la base incomplète pour les groupes abéliens : exemple ?
+\end{rem}
+
+\begin{theo}[de la base adaptée]
+Soit $G$ un \textit{groupe abélien libre de type fini}. Soit $H$ un sous-groupe de $G$. Alors $H$ est également un \textit{groupe abélien libre de type fini}. De plus, il existe une base $e=(e_1, \ldots, e_n)$ de $G$ et une famille d'entiers $(d_i)_{1 \leqslant i \leqslant r} \in (\Z^*)^r$ où $r \leqslant n$ vérifiant $d_1 \vert \ldots \vert d_r$ tels que la famille d'éléments de $G$ $(d_1e_1, \ldots, d_re_r)$ forme une base de $H$. De plus, l'entier $r$ et les coefficients $(d_i)_{1 \leqslant i \leqslant r}$ sont uniquement déterminés par la base $e$ de départ, appelés respectivement le rang et les facteurs du groupe $G$.
+\end{theo}
+
+\begin{proof}
+Soit $(x_1, \ldots, x_n)$ une base de $G$. Soit $(y_1, \ldots, y_m)$ une famille génératrice de $H$ (licite car $H$ est un sous-groupe abélien de type fini). 
+\end{proof}
+
+\begin{theo}[de structure des groupes abéliens de type fini]
+Soit $G$ un \textit{groupe abélien de type fini}. Alors il existe un unique entier $r \in \N$ et une unique famille d'entiers $(d_i)_{1 \leqslant i \leqslant r}$ vérifiant $d_1 \vert \ldots \vert d_r$ tels que le groupe $G$ soit isomorphe au groupe produit $\Z^r \times \Z/d_1\Z \times \ldots \Z/d_r\Z$. 
+\end{theo}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{rem}
+\begin{itemize}
+\item  
+\item Variante du théorème :
+\end{itemize}
+\end{rem}
+
+\begin{coro}
+Soit $G$ un \textit{groupe abélien de type fini}. On suppose $G$ \textit{sans torsion}. Alors le groupe abélien de type fini $G$ est \textit{libre}.
+\end{coro}
+
+\begin{proof}
+
+\end{proof}
+
+
 \end{document}
 
 
