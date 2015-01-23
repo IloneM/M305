@@ -216,8 +216,8 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 ### Pour aller plus loin
 Même si les instructions ci-dessus sont en théorie suffisantes pour que tout fonctionne correctement, pour plus de commodité à l'utilisation et afin d'éviter au maximum les erreurs, il est vivement conseillé de lire les pages suivantes:
 
-+ 	[http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Brancher-et-fusionner%C2%A0%3A-les-bases](http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Brancher-et-fusionner%C2%A0%3A-les-bases)
++ 	[http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Brancher-et-fusionner%C2%A0%3A-les-bases]()
 + 	[http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Gestion-de-branches]()
-+ 	http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Les-branches-distantes
++ 	[http://git-scm.com/book/fr/v1/Les-branches-avec-Git-Les-branches-distantes]()
 
 La lecture de tout le [chapitre 3](http://git-scm.com/book/fr/v1/Les-branches-avec-Git) voire de [tout le tutoriel](http://git-scm.com/book/fr/v1) est évidemment souhaitable, mais ne devrait pas être indispensable pour l'utilisation qui est faite de git dans ce projet.
