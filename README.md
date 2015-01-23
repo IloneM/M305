@@ -185,7 +185,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 
 		Password for 'https://Ilonem@github.com': 
 
-	Si tout se passe bien vous devriez voir apparaître quelque chos comme cela:
+	Si tout se passe bien vous devriez voir apparaître quelque chose comme cela:
 
 		Counting objects: 9, done.
 		Delta compression using up to 8 threads.
