@@ -7,7 +7,7 @@ layout: index
 Notes de cours du module d'Algèbre M305 du [L3-MFA](http://webens-ng.math.u-psud.fr/L3/#Specification MFA) de l'[Université Paris Sud](http://www.u-psud.fr/fr/index.html) réalisées d'après l'enseignement de [François Charles] (http://www.math.u-psud.fr/~fcharles/).
 
 ## Notes à l'intention des étudiants de L3-MFA
-Le cours est actuellement en construction, il est donc possible qu'il ne soit pas tout à fait jour selon nos disponibilités. Merci d'avance de bien vouloir nous en excuser et de faire preuve de patience.
+Le cours est actuellement en construction, il est donc possible qu'il ne soit pas tout à fait à jour selon nos disponibilités. Merci d'avance de bien vouloir nous en excuser et de faire preuve de patience.
 Malgré nos efforts de relecture, il est possible qu'il reste des "coquilles" ça et là. Si vous en repérez une, merci de bien vouloir nous la signaler par email (nos adresses sont disponibles sur les listes de diffusions des emails, envoyés par le secrétariat par exemple).
 
 Liste des auteurs actifs:
@@ -15,6 +15,7 @@ Liste des auteurs actifs:
 + 	Jade Salmon
 + 	Nilo Schwencke
 + 	Cyril Falcon
++ 	Elio Joseph
 
 ## Licence d'utilisation
 Les fichiers téléchargeables peuvent-être utilisés sans aucune contrainte, mais ne peuvent être modifiés sans faire l'object d'une redistribution open-source.
@@ -37,7 +38,7 @@ N.B.: il est nécessaire de maîtriser au moins les bases de [LaTeX](http://www.
 
 4. 	Se créer un compte sur [https://github.com/](https://github.com/)
 
-3. 	Demander par email à l'adresse iblobnembabiblb2@gbmabibl.cbobm (enlever les 'b') à devenir contributeur en précisant *votre pseudo github*, qui vous êtes et éventuellement pourquoi et comment voulez vous contribuer.
+3. 	Demander par email à l'adresse iblobnembabiblb2@gbmabibl.cbobm (enlever les 'b') à devenir contributeur en précisant *votre pseudo github*, qui vous êtes et éventuellement pourquoi et comment vous voulez contribuer.
 
 **Attention: les instructions ci-dessus ne sont à exécuter qu'une fois!**
 
@@ -59,7 +60,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 		>>>>>>> "une longue chaîne de caractères alphanumérques"
 
 	Ce qui est entre *<<<<<<< HEAD* et *=======* correspond à la version locale du fichier et ce qui est entre *=======* et *>>>>>>> "une longue chaîne de caractères alphanumérques"* correspond à la version distante du fichier.
-	Il faut alors "résoudre le conflit", c'est à dire écrire explicitement le texte qui se trouvera à cet endroit (en général un mix des deux versions). Par exemple le conflit ci-dessus pourrait être résolue en remplaçant:
+	Il faut alors "résoudre le conflit", c'est à dire écrire explicitement le texte qui se trouvera à cet endroit (en général un mix des deux versions). Par exemple le conflit ci-dessus pourrait être résolu en remplaçant:
 
 		<<<<<<< HEAD
 		tata
@@ -127,7 +128,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 			   modified:   M305.tex
 		#
 
-	Recommencer ensuite pour tous les fichiers présentant un conflit (heuresement peu nombreux en général); en cas d'oubli des fichiers concérnés, les commandes:
+	Recommencer ensuite pour tous les fichiers présentant un conflit (heureusement peu nombreux en général); en cas d'oubli des fichiers concérnés, les commandes:
 
 		# sous linux:
 		git ls-files -u | cut -f 2 | sort -u
@@ -172,7 +173,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 
 		git commit -a -m "mon message"
 
-	S'il est nécessaire d'annuler une modification (un commit), cela peut-être réalisée au moyen de la commande suivante (**à utiliser avec précaution! Les modifications peuvent être perdue définitivement!**):
+	S'il est nécessaire d'annuler une modification (un commit), cela peut-être réalisé au moyen de la commande suivante (**à utiliser avec précaution! Les modifications peuvent être perdues définitivement!**):
 
 		git commit --amend
 
@@ -182,11 +183,11 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 
 		git push origin build
 
-	Le terminal devrait alors vous demander votre identifiant github (crée lors des instructions pour débuter):
+	Le terminal devrait alors vous demander votre identifiant github (créé lors des instructions pour débuter):
 
 		Username for 'https://github.com': 
 
-	Puis une fois celui-ci entrer, votre mot de passe github:
+	Puis une fois celui-ci entré, votre mot de passe github:
 
 		Password for 'https://Ilonem@github.com': 
 
@@ -216,7 +217,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 		hint: (e.g., 'git pull ...') before pushing again.
 		hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
-	Ceci se produit si, par malheur, quelqu'un vous a devancé et a réalisé un "push" juste avant vous, auquel cas, il faut recommencer tout ce cycle d'instructions (en sautant l'étape 3)... Heuresement ce type d'incident ne devrait se produire que très très rarement!
+	Ceci se produit si, par malheur, quelqu'un vous a devancé et a réalisé un "push" juste avant vous, auquel cas, il faut recommencer tout ce cycle d'instructions (en sautant l'étape 3)... Heureusement ce type d'incident ne devrait se produire que très très rarement!
 
 ### Pour aller plus loin
 Même si les instructions ci-dessus sont en théorie suffisantes pour que tout fonctionne correctement, pour plus de commodité à l'utilisation et afin d'éviter au maximum les erreurs, il est vivement conseillé de lire les pages suivantes:
