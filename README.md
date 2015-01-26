@@ -44,7 +44,7 @@ Pour partager votre contribution et bénéficier de celles des autres auteurs, e
 1. 	Exécuter les commandes suivantes:
 
 		git fetch origin
-		git pull
+		git pull origin
 
 2. 	À cette étape, il est possible que git indique qu'il y a des "Conflits de fusions" ("Merge conflict"), c'est à dire des incompatibilités entre les fichiers distants et les fichiers locaux. Si ce n'est pas le cas, passer directement à l'étape suivante. Sinon, git indiquera également quels sont les fichiers posant problème. Ouvrir un de ces fichiers. Chercher alors dans le fichier un block de texte de cette forme:
 
