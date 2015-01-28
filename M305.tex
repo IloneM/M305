@@ -569,8 +569,15 @@ Soit $(x_1, \ldots, x_n)$ une base de $G$. Soit $(y_1, \ldots, y_m)$ une famille
 Soit $G$ un \textit{groupe abélien de type fini}. Alors il existe un unique entier $r \in \N$ et une unique famille d'entiers $(d_i)_{1 \leqslant i \leqslant r}$ vérifiant $d_1 \vert \ldots \vert d_r$ tels que le groupe $G$ soit isomorphe au groupe produit $\Z^r \times \Z/d_1\Z \times \ldots \Z/d_r\Z$. 
 \end{theo}
 
-\begin{proof}
+\begin{rem}
+$\Gt=\{0\}^r \times \Z/d_1\Z \times \ldots \times \Z/d_s\Z$ et $G_{\textrm{sans torsion}}=\Z^r \times \{0\}^{s}$ 
+\end{rem}
 
+\begin{proof}
+On se donne un morphisme de groupes surjectif $f$ de $\Z^n$ dans $G$. On pose $H=\ker f$. Alors, d'après le théorème de factorisation, $G$ est isomorphe à $\Z^n/H$ $(\star)$.Par application du théorème de la base adaptée à $\Z^n$, il existe une base $e=(e_1, \ldots, e_n)$ de $\Z^n$ et une famille d'entiers $(d_i)_{1 \leqslant i \leqslant s} \in (\Z^*)^s$ où $s \leqslant n$ vérifiant $d_1 \vert \ldots \vert d_s$ tels que la famille $(d_1e_1, \ldots, d_re_s)$ d'éléments de $G$ forme une base de $H$, ie $H=\left\{\dis \sum_{i=1}^s a_id_ie_i \mid (a_i)_{1 \leqslant i \leqslant s} \in \Z^s \right\}=\left\{\dis \sum_{i=1}^n a_ie_i \mid (a_i)_{1 \leqslant i \leqslant n} \in (d_i\Z)^s\times\{0\}^{n-s} \right\}$ $(\star ')$. 
+
+On considère le morphisme de groupes surjectif $\app{\pi}{\Z^n}{\Z/d_1\Z \times \ldots \times \Z/d_r\Z \times \Z^{n-r}}{\dis \sum_{i=1}^na_ie_i}{(\overline{a_1}, \ldots, \overline{a_s},a_{s+1}, \ldots, a_n)}$ de noyau $\ker \pi=(d_1\Z )e_1 \times \ldots \times (d_s\Z)e_s \times \{0\}^{n-s}$ isomorphe à $H$ (cf $(\star ')$). 
+Ainsi, d'après $(\star)$, $G$ est isomorphe à $\Z^n/\ker \pi$, lui-même isomorphe à $\Z/d_1\Z \times \ldots \times \Z/d_s\Z \times \Z^{r}$ où $r=n-s \in \nt{0,n}$ (d'après le théorème de factorisation). D'où l'existence. 
 \end{proof}
 
 \begin{rem}
