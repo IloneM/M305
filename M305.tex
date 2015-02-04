@@ -595,6 +595,72 @@ Soit $G$ un \textit{groupe abélien de type fini}. On suppose $G$ \textit{sans t
 
 \end{proof}
 
+\subsection{Anneaux}
+
+Sot $A$ un anneau.
+
+\begin{defi}
+Un $A$-module est par définition un groupe $M$ additif muni d'une application $\app{.}{A \times M}{M}{(a,m)}{am}$ vérifiant : pour tout $(a,b) \in A^2$, pour tout $m \in M$ :
+\begin{itemize}
+\item $0m=0$ et $1m=m$
+\item $(a+b)m=am+bm$
+\item $(ab)m=a(bm)$
+\end{itemize}
+\end{defi}
+
+\exem L'anneau $A$ est un $A$-module. Un idéal de l'anneau $A$ est un sous-module de $A$. 
+
+\begin{lem}
+Soit $I$ un idéal de l'anneau $A$ contenant l'élément $1$ (neutre de la multiplication). Alors $I=A$.
+\end{lem}
+
+\begin{defi}
+\begin{point}
+\item Soit $(a_j)_{j\in J} \in A^J$. On note alors également $ (a_j)_{j\in J}$ le plus petit idéal de $A$ contenant cette famille : \[(a_j)_{j\in J}=\left\{\dis \sum_{j \in J} \lambda_ja_j \mid (\lambda_j)_{j\in J} \in A^{(J)}  \right\} \]
+\item Soit $I$ un idéal de l'anneau $A$. 
+\begin{itemize}
+\item On dit que l'idéal $I$ est principal si il existe $a \in A$ tel que $I=(a)$.
+\item On dit que l'anneau $I$ est principal si $A$ est intègre et tout idéal de l'anneau $A$ est principal.
+\end{itemize} 
+\end{point}
+\end{defi}
+
+\exem 
+\begin{itemize}
+\item L'anneau $\Z$ est principal (car $\Z$ est intègre et tout idéal de $\Z$ est un sous-groupe additif de $\Z$, ie de la forme $a\Z=(a)$ où $a\in \Z$.
+\item On considère l'anneau $A=\C[X,Y]$. Alors l'idéal $(X,Y)$ n'est pas principal. En effet, $I=(X,Y)=\{PX+QY \mid (P,Q) \in \C[X,Y]^2\}=\{P \in \C[X,Y] \mid P(0,0)=0\}$. Supposons par l'absurde qu'il existe $P_I \in A$ tel que $I=(P_I)=\{PP_I \mid P \in \C[X,Y]\}$. Alors en particulier, $X \in I$ et $Y\in I$ sont des multiples de $P_I$. Donc $P_I$ est constant. Comme $P_I \in I$, $P_I(0,0)=0$, d'où $P_I=0$. Contradiction.
+\end{itemize}
+
+\begin{prop}
+Soit $ \K$ un corps. Alors les idéaux de l'anneau $\K$ sont exactement $\K$ et l'idéal trivial ${0}$.
+\end{prop}
+
+\begin{proof}
+Soit $I$ un idéal non nul de l'anneau $\K$. Soit $x \in I \backslash \{0\}$. Alors $x$ est inversible, ie il existe $y \in \K$ tel que $xy=1$. Donc $1 \in I$. D'après le lemme précédent, $\K=I$.
+\end{proof}
+
+\begin{defi}
+Soit $I$ un idéal strict de l'anneau $A$.
+\begin{point}
+\item On dit que l'idéal $I$ est premier si l'anneau quotient $A/I$ est intègre.
+\item On dit que l'idéal $I$ est maximal si l'anneau quotient $A/I$ est un corps.
+\end{point}
+\end{defi}
+
+\exem \begin{itemize}
+\item Soit $n \in \N^*$. Alors l'idéal $n\Z=(n)$ de l'anneau $\Z$ est premier et maximal si et seulement si l'entier $n$ est premier.
+\item L'idéal $(0)$ de l'anneau $\Z$ est premier mais pas maximal.
+\end{itemize}
+
+\begin{prop}[correspondance des deux définitions de maximalité]
+Soit $I$ un idéal strict de l'anneau $A$. Alors l'idéal $I$ est maximal si et seulement si pour tout idéal $J$ de l'anneau $A$ contenant strictement $I$, on a : $J=A$ (ie l'idéal $I$ est maximal pour l'inclusion).
+\end{prop}
+
+\begin{proof}
+On suppose que le quotient $A/I$ est un corps. Soit $J$ un idéal de l'anneau $A$ contenant strictement $I$. On considère le morphisme d'anneaux de projection $\pi$ de $A$ dans $A/I$. Alors, $\pi(J)$ est un idéal de l'anneau $A/I$ (car $\pi(J)$ est un sous-groupe additif du groupe $J$ comme image d'un groupe par un morphisme de groupes et pour tout $(x,b) \in \pi(J) \times A/I$, il existe $(a,a') \in J \times A$ tel que $x=\pi(a)$ (par surjectivité de $\pi$) et $b=\pi(a')$, d'où $ax=\pi(a)\pi(a')=\pi(\underbrace{aa'}_{\in J}) \in \pi(J))$. Comme l'idéal $J$ n'est pas l'idéal trivial, $\pi(J)=A/I$ (cf proposition précédente). Soit $a \in A$. Comme $\pi(a) \in \pi(J)$, il existe $a' \in J$ tel que $\pi(a)=\pi(a')$, ie $a-a' \in I \subset J$. D'où $a \in J$. Ainsi, $A \subset J$, donc $J=A$. 
+
+Réciproquement, on suppose l'idéal $I$ maximal pour l'inclusion. Alors l'anneau quotient $A/I$ est non trivial. Soit $x \in A/I \backslash \{0\}$. Il existe alors $a \in A$ tel que $x=\pi(a)$. On considère l'ensemble $J=(a)+I=\{\lambda a + i \mid (\lambda,i) \in A\times I\}$. Alors $J$ est un idéal de l'anneau $A$ contenant l'élément $a$ et l'ensemble $I$. Donc $I$ est un idéal strict de l'idéal $J$. Par maximalité $I$, il vient $A=J$. Or, $1 \in J$ donc il existe $(\lambda,i) \in A\times I$ tel que $1=\lambda a + i$. D'où $\pi(1)=\pi(\lambda a) + \underbrace{\pi(i)}_{=0}=\pi(\lambda)x=1_{A/I}$. D'où l'élément $x$ est inversible. Ainsi, $A/I$ est un corps. 
+\end{proof}
 
 \end{document}
 
