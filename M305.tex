@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{report}
 \usepackage[a4paper]{geometry}   % .. avec les bonnes marges
 \pagestyle{headings}
 \usepackage{ucs}
@@ -17,8 +17,6 @@
 \usepackage{amsthm}
 \usepackage{enumitem}
 \usepackage{stmaryrd}
-
-
 
 
 %________________________________________________________________________%
@@ -72,10 +70,16 @@
 
 % Raccourcis
 
+\newcommand{\direct}{\textcircled{$\Rightarrow$} }
+\newcommand{\reciproque}{\textcircled{$\Leftarrow$} }
 
-\newcommand{\ssi}{si et seulement si}
+\newcommand{\x}{\times}
+\newcommand{\bs}{\backslash}
+
+\newcommand{\ssi}{si et seulement si }
 
 \newcommand{\equi}{les assertions suivantes sont équivalentes :}
+\newcommand{\lasse}{\equi}
 
 \newcommand{\pgcd}{\mathrm{PGCD}} 
 
@@ -157,7 +161,7 @@
 
 % avec numerotation
 
-\newtheorem{defi}{Définition}[section]
+\newtheorem{defi}{Définition}[chapter]
 \newtheorem{depro}[defi]{Définition-proposition}
 \newtheorem{theo}[defi]{Théorème}
 \newtheorem{prop}[defi]{Proposition}
@@ -179,8 +183,8 @@
 
 % avec numerotation
 
-\newtheorem{rem}{Remarque}
-\newtheorem{nota}{Notation}
+\newtheorem{rem}[defi]{Remarque}
+\newtheorem{nota}[defi]{Notation}
 
 %sans numerotation
 
@@ -209,11 +213,17 @@
 \newcommand{\partie}[1]{\textcolor{red}{\section{#1}}}
 \newcommand{\titre}[1]{\textcolor{orange}{\subsection{#1}}}
 
-% Commande exercice et exemple
+% Commande exercice, question et exemple
 
 \newcommand{\exems}{{\textbf{$\text{\ding{46}}$ Exemples : \ }}}
 
 \newcommand{\exem}{{\textbf{$\text{\ding{46}}$ Exemple : \ }}}
+
+\newcommand{\ques}{\underline{Question:} }
+\newcommand{\aques}{\underline{Autre question:} }
+\newcommand{\rep}{\underline{R\'eponse:} }
+
+\newcommand{\warning}[1]{{\bf{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax} #1}}
 
 \newcounter{nexo}
 \setcounter{nexo}{0}        
@@ -225,7 +235,7 @@
 
 % Application
 
-\newcommand{\app}[5]{#1:\left\{\begin{array}{rcl}
+\newcommand{\app}[5]{#1:\left\{\begin{array}{ccl}
 #2 & \longrightarrow & #3 \\
 #4 & \longmapsto & #5  \\
 \end{array}\right.
@@ -306,6 +316,14 @@
   {\end{description}}
 
 
+% taille de delimiteurs
+
+\makeatletter
+
+\newcommand{\biggg}{\bBigg@{4}}
+\newcommand{\Biggg}{\bBigg@{5}}
+
+\makeatother
 
 %________________________________________________________________________%
 
@@ -338,15 +356,25 @@
 
 %\chapter*{Algèbre 2}
 
-\section{Rappels de th\'eorie des groupes}
+%\chapter{Rappels de th\'eorie des groupes}
 
-{\bf\`A compl\'eter}
+%{\bf\`A compl\'eter}
+
+\chapter*{Remarques pr\'eliminaires}
+
+On supposera connu les r\'esultats de th\'eorie des groupes vus au S5. Pour plus d'informations, se r\'ef\'erer aux notes de cours de Nicolas Ratazzi.
+
+\chapter{Classification des groupes ab\'eliens}
+
+Le but de ce chapitre est de donner une classification des groupes ab\'eliens. On va s'int\'eresser pour cela \`a une sous-cat\'egorie de groupes ab\'eliens: les groupes abliens de type fini. Dans toutes ce chapitre la loi des groupes consid\'er\'es sera $+$ sauf mention contraire explicite.
 
 \section{Groupes ab\'eliens de type fini}
 
-Le but de cette section est de donner une classification des groupes ab\'eliens. On va s'int\'eresser pour cela \`a une sous-cat\'egorie de groupes ab\'eliens: les groupes abliens de type fini. Dans toutes cette section la loi des groupes consid\'er\'es sera $+$ sauf mention contraire explicite.
+%Le but de cette section est de donner une classification des groupes ab\'eliens. On va s'int\'eresser pour cela \`a une sous-cat\'egorie de groupes ab\'eliens: les groupes abliens de type fini. Dans toutes cette section la loi des groupes consid\'er\'es sera $+$ sauf mention contraire explicite.
 
-
+%%%
+%definition d'un module sur un anneau
+%%%
 
 \begin{rem}
 Tout groupe ab\'elien $(G,+,0_G)$ peut s'identifier \`a un $\Z$-module en posant:
@@ -356,15 +384,15 @@ $$\forall n\in \Z,\forall (h,g)\in G\times G,\, n\cdot(h+g)=(n\cdot g)+(n\cdot h
 \end{rem}
 
 \begin{depro}
-Soient $G$ un groupe abélien et $S$ une partie de $G$. Alors il existe un unique sous-groupe $H$ de $G$ qui contient $S$ minimal (pour l'inclusion). $H$ est appelé le \textit{sous-groupe de $G$ engendré par la partie $S$}, et noté $\langle S\rangle$.
+Soient $G$ un groupe abélien et $S$ une partie de $G$. Alors il existe un unique sous-groupe $H$ de $G$ qui contient $S$ et qui soit minimal (pour l'inclusion). $H$ est appelé le \textit{sous-groupe de $G$ engendré par la partie $S$}, et noté $\langle S\rangle$.
 \end{depro}
 
 \begin{proof}
-On note $\mathcal{E}$ l'ensemble des sous-groupes de $G$ contenant $S$. $\mathcal{E}$ est non vide (car $G \in\mathcal{E}$). Alors $\dis \bigcap_{H \in \mathcal{E}} H$ est un sous-groupe de $G$ contenant $S$ qui contenu dans tout autre élément de $\mathcal{E}$.
+On note $\mathcal{E}$ l'ensemble des sous-groupes de $G$ contenant $S$. $\mathcal{E}$ est non vide (car $G \in\mathcal{E}$). Alors $\dis \bigcap_{H \in \mathcal{E}} H$ est un sous-groupe de $G$ contenant $S$ qui est contenu dans tout autre élément de $\mathcal{E}$.
 \end{proof}
 
 \begin{rem}
-Soit $G$ un groupe abélien, soit $S$ une partie de $G$. Alors $\langle S\rangle$ contient l'élément neutre, et stable par additivité et passage à l'inverse. Comme $G$ est abélien, $\langle S\rangle$ contient donc toutes les combinaisons linéaires d'éléments de $S$, i.e.:
+Soit $G$ un groupe abélien, soit $S$ une partie de $G$. Alors $\langle S\rangle$ contient l'élément neutre et est stable par additivité et passage à l'inverse. Comme $G$ est abélien, $\langle S\rangle$ contient donc toutes les combinaisons linéaires d'éléments de $S$, i.e.:
 $$\left\{\dis \sum_{i=1}^r n_is_i \mid (s_i)_{1 \leqslant i \leqslant r} \in S^r, (n_i)_{1 \leqslant i \leqslant r} \in \Z^r, r \in \N \right\}\subset\langle S\rangle$$
 On constate qu'un tel ensemble est de plus un sous-groupe de $G$ et donc, par unicité, on a m\^eme:
 $$\langle S\rangle=\left\{\dis \sum_{i=1}^r n_is_i \mid (s_i)_{1 \leqslant i \leqslant r} \in S^r, (n_i)_{1 \leqslant i \leqslant r} \in \Z^r, r \in \N \right\}$$
@@ -380,14 +408,17 @@ Soit $G$ un groupe abélien, soit $S$ une partie de $G$.
 
 Pour tout $r \in \N^*$, on note $e=(e_i)_{1 \leqslant i \leqslant r} \in \left(\Z^r\right)^r$ la base canonique de $\Z^r$ (chaque vecteur a pour i\up{ème} coordonnée $1$ et $0$ ailleurs).
 
-\exem Un groupe $G$ abélien fini est de type fini (engendré par la partie $G$ finie). \\
-Soit $r \in \N^*$. Alors $\Z^r$ est un groupe abélien de type fini (engendré par la partie $\{e_1, \ldots, e_r \}$i
+\exem
+\begin{ls}
+\item Un groupe $G$ abélien fini est de type fini (engendré par la partie $G$ finie).
+\item Soit $r \in \N^*$. Alors $\Z^r$ est un groupe abélien de type fini (engendré par la partie $\{e_1, \ldots, e_r \}$).
+\end{ls}
 \begin{lem}\label{morphisme-Zr-G}
 Soit $G$ un groupe abélien, soit $r \in \N^*$, soit $(x_1, \ldots, x_r) \in G^r$. Alors il \textit{existe un unique morphisme} de groupes $f$ du groupe $\Z^r$ dans le groupe $G$ qui, pour tout $i \in \nt{1,r}$, \textit{envoie $e_i$ sur $x_i$ $(\star)$}, donné par $\app{f}{\Z^r}{G}{(a_i)_{1 \leqslant i \leqslant r}}{\dis \sum_{i=1}^ra_ix_i}$. \\ De plus, $\im f =\langle\{x_1, \ldots, x_r\}\rangle$.
 \end{lem}
 
 \begin{proof}
-Un morphisme de groupes de $\Z^r$ dans $G$ vérifiant $(\star)$ est uniquement déterminé par l'image de la base canonique $e$ de par la décomposition unique d'un vecteur de $\Z^r$ dans cette base et la linéarité du morphisme.
+Un morphisme de groupes de $\Z^r$ dans $G$ vérifiant $(\star)$ est uniquement déterminé par l'image de la base canonique $e$, de par l'unicit\'e de la décomposition d'un vecteur de $\Z^r$ dans cette base et linéarité du morphisme.
 \end{proof}
 
 \begin{coro}\label{type-fini-et-Zr}
@@ -398,7 +429,7 @@ Un groupe abélien est de type fini si et seulement si il existe un morphisme de
 On conserve les notations du lemme~\ref{morphisme-Zr-G}. \\
 Soit $G$ un groupe abélien de type fini. Alors $G$ possède une partie génératrice finie $S=\{x_1, \ldots, x_r \}$ (où $r \in \N$), d'où $\im f=\langle S\rangle=G$,
 i.e. le morphisme de groupes $f$ de $\Z^r$ dans $G$ est surjectif. \\
-Réciproquement, soit $g$ un morphisme de groupes surjectif de $\Z^r$ (où $r \in \N$) dans $G$ , alors $S=\{f(e_1), \ldots, f(e_r) \}$ est une partie génératrice de $G$ (car tout élément de $G$ possède un antécédent dans $\Z^r$ qui se décompose dans la base canonique $e$, donc son image, i.e. $g$, s'écrit comme combinaison linéaire d'éléments de $S$). 
+Réciproquement, soit $g$ un morphisme de groupes surjectif de $\Z^r$ (où $r \in \N$) dans $G$, alors $S=\{f(e_1), \ldots, f(e_r) \}$ est une partie génératrice de $G$ (car tout élément de $G$ possède un antécédent dans $\Z^r$ qui se décompose dans la base canonique $e$, et donc son image, i.e. $G$, s'écrie comme combinaison linéaire d'éléments de $S$). 
 \end{proof}
 
 \begin{prop}\label{image-type-fini}
@@ -429,16 +460,18 @@ Par hypothèse, il existe $(x_1, \ldots, x_r) \in G^r$ tel que la partie finie $
 Soit $G$ un groupe abélien de type fini. Soit $H$ un sous-groupe de $G$. Alors le groupe abélien $H$ est de type fini.
 \end{prop}
 
-\begin{proof}
+\begin{proof}\hspace{1em}
 \begin{ls}
 \item Supposons le groupe $G$ monogène. Si $G$ est cyclique, on sait alors que $H$ est cyclique. Sinon, on se donne un générateur $g$ de $G$ (qui est donc d'ordre infini). On sait que l'application $\app{\varphi}{\Z}{G}{n}{ng}$ est un isomorphisme de groupes. $H$ est isomorphe au sous-groupe $\varphi^{-1}(H)$ de $\Z$ qui s'écrit donc $\varphi^{-1}(H)=m\Z$ (où $m \in \N$), i.e. $H=\varphi(m\Z)=\{ng \mid n \in m\Z \}=\langle mg\rangle$ i.e. $H$ est monogène. 
-\item Dans le cas contraire, on considère un morphisme de groupes $f:\Z^r\to G$ surjectif, où $r \in \N^*$ désigne le cardinal de la partie génératrice de $G$ (cf preuve du corollaire~\ref{type-fini-et-Zr}). Montrons par récurrence sur $r \in \N^*$ que $H$ est de type fini:
+\item Dans le cas contraire, on considère un morphisme de groupes $f:\Z^r\to G$ surjectif, où $r \in \N^*$ désigne le cardinal de la partie génératrice de $G$ (cf. preuve du corollaire~\ref{type-fini-et-Zr}). Montrons par récurrence sur $r \in \N^*$ que $H$ est de type fini:
 \begin{lls}
 	\item\underline{Initialisation $r=1$:} C'est le cas o\`u $G$ est monog\`ene et a donc d\'ej\`a été traité dans le premier point de cette preuve.
 	\item\underline{H\'er\'edit\'e:} Supposons le résultat vrai pour $r-1$ ($r \in \N^*$). Considèrons le groupe $\Z^{r-1}$ comme sous-groupe de $\Z^r$ (via l'injection de $\Z^{r-1} \times \{0\}$ dans $\Z^{r}$). Par hypothèse de récurrence, tout sous-groupe de $K=f(\Z^{r-1})$ est de type fini. Montrons que $G/K$ est monogène : considérons le morphisme de groupes $\app{\psi}{\Z}{G/K}{a}{\overline{f(0, \ldots, 0,a)}}$. 
-Soit $\overline{g} \in G/K$. Par surjectivité de $f$, il existe $(a_1, \ldots, a_r) \in \Z^r$ tel que $g=f(a_1, \ldots, a_r)$. Donc $g=\underbrace{f(a_1, \ldots, a_{r-1},0)}_{\in K}+f(0, \ldots, 0, a_r)$, i.e. $\overline{g}=\overline{f(0, \ldots, 0,a_r)}=\psi(a_r)$. Ainsi, $\psi$ est surjectif, et donc $G/K$ est monog\`ene d'apr\`es ce qui a \'et\'e montr\'e au premier point de cette preuve.\\
+Soit $\overline{g} \in G/K$. Par surjectivité de $f$, il existe $(a_1, \ldots, a_r) \in \Z^r$ tel que $g=f(a_1, \ldots, a_r)$. Donc $g=\underbrace{f(a_1, \ldots, a_{r-1},0)}_{\in K}+f(0, \ldots, 0, a_r)$, i.e. $\overline{g}=\overline{f(0, \ldots, 0,a_r)}=\psi(a_r)$. Ainsi, $\psi$ est
+%topo isom Z/ker f, et kerf ss grp Z
+surjectif, et donc $G/K$ est isomorphe \`a $\Z/\ker\psi$ monog\`ene ($\ker\psi=n\Z,\, n\in\N$ comme sous-groupe de $\Z$) et donc $G/K$ est monog\`ene d'apr\`es le premier point de cette preuve.\\
 Soit $H$ un sous-groupe de $G$.
-Considèrons $\pi_H:H\to G/K$ la restriction \`a $H$ de la surjection canonique. $\im \pi_H$ est un sous-groupe de $G/K$ monogène, donc $\im \pi_H$ est monogène. \\
+Considèrons $\pi_H:H\to G/K$ la restriction \`a $H$ de la surjection canonique. $\im \pi_H$ est un sous-groupe de $G/K$ monogène, donc $\im \pi_H$ est monogène.\\
 $\ker \pi_H=K \cap H \subset K$ est de type fini par hypothèse de récurrence. D'après la proposition~\ref{g-type-fini-par-morphisme}, on a donc que $H$ est de type fini.
 \end{lls}
 \end{ls}
@@ -453,12 +486,12 @@ $\ker \pi_H=K \cap H \subset K$ est de type fini par hypothèse de récurrence. 
 \item On dit que le groupe $G$ est \textit{sans torsion} si tout élément de $G$ non nul est d'ordre infini.
 \end{lls}
 
-\item Si $G$ est de plus abélien, on dit que $G$ est \textit{libre de type fini} s'il existe $r \in \N$ tel que $G$ soit isomorphe à $\Z^r$.\\
-Dans ce cas, on a:
+\item Si $G$ est de plus abélien, on dit que $G$ est \textit{libre de type fini} s'il existe $r \in \N$ tel que $G$ soit isomorphe à $\Z^r$.\bigbreak
+Dans ce cas, on a que:
 \begin{lls}
-\item Soit $(x_1, \ldots, x_r) \in G^r$.  On dit que les éléments $x_1, \ldots, x_r$ forment une famille libre, ou encore sont linéairement indépendants, si:
+\item $(x_1, \ldots, x_r) \in G^r$ forment une famille libre, ou encore sont linéairement indépendants, si:
 $$\forall (n_1, \ldots, n_r) \in \Z^r,\, \left(\dis \sum_{i=1}^r n_ix_i=0\implies\forall i \in \nt{1,r}, n_i=0\right)$$
-\item On dit que les éléments $x_1, \ldots, x_r$ forment une base de $G$ si ils forment une famille libre et génératrice de $G$.
+\item $(x_1, \ldots, x_r) \in G^r$ forment une base de $G$ si ils forment une famille libre et génératrice de $G$.
 \end{lls}
 \end{ls}
 \end{defi}
@@ -480,7 +513,7 @@ Soit $G$ un groupe abélien.
 \end{point}
 \end{proof}
 
-\begin{coro}
+\begin{coro}\label{equiv-base-isom-Zr}
 Soit $G$ un groupe abélien de type fini. Alors $G$ est libre de type fini si et seulement si il admet une base.
 \end{coro}
 
@@ -488,11 +521,11 @@ Soit $G$ un groupe abélien de type fini. Alors $G$ est libre de type fini si et
 %\end{proof}
 %on ne peut pas utiliser ici la cardinalit\'e, car ce sont des espaces infinis, et on ne peut pas utiliser l'alg\`ebre lin\'eaire, car on n'a pas de r\'esultats sur les modules
 
-\begin{proof}\hspace{.1em}\\
-\underline{$\Rightarrow$} Supposons $G$ libre de type fini et soit $r\in\N$ tel que $f:\Z^r\to G$ soit un isomorphisme de groupes. Soit $(x_1, \ldots ,x_r)=(f(e_1),\ldots, f(e_r))$ les images de la base canonique $e=(e_i)_{1\leqslant i\leqslant r}$ de $\Z^r$ par $f$. Soit $z\in\Z^r$ et $(a_1,\ldots,a_r)\in\Z^r$ tel que $z=\dis\sum_{i=1}^r a_ie_i$. On a donc:
+\begin{proof}
+\direct Supposons $G$ libre de type fini et soit $r\in\N$ tel que $f:\Z^r\to G$ soit un isomorphisme de groupes. Soit $(x_1, \ldots ,x_r)=(f(e_1),\ldots, f(e_r))$ les images de la base canonique $e=(e_i)_{1\leqslant i\leqslant r}$ de $\Z^r$ par $f$. Soit $z\in\Z^r$ et $(a_1,\ldots,a_r)\in\Z^r$ tel que $z=\dis\sum_{i=1}^r a_ie_i$. On a donc:
 $$f(z)=f(\dis\sum_{i=1}^r a_i e_i)\stackrel{\textrm{$f$ morphisme}}{=}\dis\sum_{i=  1}^r a_if(e_i)=\dis\sum_{i=  1}^r a_ix_i$$
-$f$ est donc de la forme du lemme~\ref{morphisme-Zr-G} et de par la proposition-d\'efinition~\ref{def-groupe-torsion}, on a que $(x_1, \ldots ,x_r)$ est libre. De plus par isomorphisme on a que $\{x_1, \ldots ,x_r\}$ est génératrice de $G$. $(x_1, \ldots ,x_r)$ est donc une base de $G$.\\
-\underline{$\Leftarrow$} Soit $(x_1, \ldots ,x_r)$ une base de $G$ et soit $f$ le morphisme du lemme~\ref{morphisme-Zr-G} associ\'e. Alors d'apr\`es la proposition-d\'efinition~\ref{def-groupe-torsion}, $f$ est injectif et d'apr\`es la preuve du corollaire~\ref{type-fini-et-Zr}, $f$ est surjectif, i.e. $f$ est un isomorphisme de groupes.
+$f$ est donc de la forme du lemme~\ref{morphisme-Zr-G} et de par la proposition-d\'efinition~\ref{def-groupe-torsion}, on a que $(x_1, \ldots ,x_r)$ est libre. De plus par isomorphisme on a que $\{x_1, \ldots ,x_r\}$ est génératrice de $G$. $(x_1, \ldots ,x_r)$ est donc une base de $G$.\bigbreak
+\reciproque Soit $(x_1, \ldots ,x_r)$ une base de $G$ et soit $f$ le morphisme du lemme~\ref{morphisme-Zr-G} associ\'e. Alors d'apr\`es la proposition-d\'efinition~\ref{def-groupe-torsion}, $f$ est injectif et d'apr\`es la preuve du corollaire~\ref{type-fini-et-Zr}, $f$ est surjectif, i.e. $f$ est un isomorphisme de groupes.
 \end{proof}
 
 \begin{prop}
@@ -500,62 +533,128 @@ Soit $G$ un groupe abélien de type fini, alors le groupe de torsion $\Gt$ est f
 \end{prop}
 
 \begin{proof}
-Soit $\{x_1, \ldots ,x_r\}$ une partie génératrice de $\Gt$ (licite car $\Gt$ est de type fini comme sous-groupe d'un groupe de type fini). Pour tout $i \in \nt{1,r}$, on note $n_i$ l'ordre de l'élément $x_i$. On considère le morphisme de groupes $\app{\varphi}{\Z/n_1\Z \times \cdots \times \Z/n_r\Z}{G}{(\overline{a_1}, \ldots, \overline{a_r})}{\dis \sum_{i=1}^r a_ix_i}$.\\
+Soit $\{x_1, \ldots ,x_r\}$ une partie génératrice de $\Gt$ (licite car $\Gt$ est de type fini comme sous-groupe d'un groupe de type fini). Pour tout $i \in \nt{1,r}$, on note $n_i$ l'ordre de l'élément $x_i$. On considère le morphisme de groupes $\app{\varphi}{\Z/n_1\Z \times \cdots \times \Z/n_r\Z}{\Gt}{(\overline{a_1}, \ldots, \overline{a_r})}{\dis \sum_{i=1}^r a_ix_i}$.\\
 $\varphi$ est bien défini car pour tout $(\overline{a_1}, \ldots, \overline{a_r})=(\overline{b_1}, \ldots, \overline{b_r}) \in \Z/n_1\Z \times \cdots \times \Z/n_r\Z$, $(a_i-b_i)\in n_i\Z$, donc $n_i=ordre(x_i)\mid (a_i-b_i)$ et donc $\dis \sum_{i=1}^r \underbrace{(a_i-b_i)x_i}_{=0}=0$.\\
-De plus $\varphi$ est surjectif par construction  donc $\vert G \vert \leqslant \dis \prod_{i=1}^r n_i \in \N^*$ i.e. $G$ est fini.
+De plus $\varphi$ est surjectif par construction  donc $\vert \Gt \vert \leqslant \dis \prod_{i=1}^r n_i \in \N^*$ i.e. $\Gt$ est fini.
 \end{proof}
 
-\subsection{Théorèmes de structure}
-
 \begin{rem}
-Soit $\K$ un corps. Soit $E$ un $\K$-espace vectoriel sur le corps $\K$ de dimension finie. Soit $F$ un sous-espace vectoriel de $E$. Alors $F$ admet un supplémentaire $S$ dans $E$. On considère l'application linéaire $f$ de projection de $E$ dans $E/F$ restreint à $S$. Alors $f$ est  injectif (car $\ker f = F \cap S =\{0\}$ et surjective (car tout élément de $E/F$ admet un représentant appartenant à $S$ en utilisant la décomposition de $E$), ie $S$ et $E/F$ sont isomorphes. \\
-
-Soit $G$ un groupe abélien de type fini. \\ 
-
-Soit $H$ un sous-groupe de $G$.On cherche à déterminer, quand il existe, l'analogue d'un supplémentaire pour $H$, ie un sous-groupe $H'$ de $G$ tel que $H \times H'$ soit isomorphe à $G$, ou de manière équivalente, un isomorphisme de groupes de $H'$ dans $G/H$. \
-Par exemple, tout sous-groupe $H'$ de $\Z$ isomorphe à $\Z/2\Z$ serait immédiatement de torsion, ce qui n'est pas possible puisque $\Z$ est sans torsion. \
-On peut également se demander si tout groupe abélien $G$ de type fini admet une base. Ce n'est jamais le cas si $\Gt$ n'est pas réduit à l'élément nul. Par exemple, l'élément $\overline{1} \in \Z/2\Z$ (de torsion puisque d'ordre 2) ne forme pas une base de $\Z/2\Z$. \\
+Si $G$ est de type fini, alors $G/\Gt$ est de type fini (l'image de la famille g\'en\'eratrice de $G$ par la projection canonique $\pi:G\to G/\Gt$ est g\'en\'eratrice de $G/\Gt$).
 \end{rem}
 
-Par l'existence d'une surjection de $\Z^r$ dans $G$ et par le théorème de factorisation, $G$ est isomorphe au groupe quotient $\Z^r/\ker f$. Nous allons donc dans un premier temps chercher à comprendre la structure des sous-groupes de $\Z^r$. 
+\section{Théorèmes de structure}
 
+\begin{rem}
+Soit $E$ un $\K$-espace vectoriel sur le corps $\K$ de dimension finie et $F$ un sous-espace vectoriel de $E$. Alors $F$ admet un supplémentaire $S$ dans $E$ qui est isomorphe \`a $E/F$ (consid\'erer l'application linéaire $\pi$ de projection de $E$ dans $E/F$ restreinte à $S$. Alors $\pi$ est  injective, car $\ker f = F \cap S =\{0\}$ et surjective, car tout élément de $E/F$ admet un représentant appartenant à $S$ en utilisant que $E=F\oplus S$).\bigbreak
+\end{rem}
+
+\ques Un concept analogue existe-t-il pour les groupes ab\'eliens de type fini?\medbreak
+%On voudrait d\'esormais obtenir un concept analogue \`a celui de suppl\'ementaire pour les groupes ab\'eliens de type fini.
+Plus pr\'ecis\`ement, existe-t-il, pour $G$ un groupe abélien de type fini et $H\subset G$ un sous-groupe, $H'$ un sous-groupe de $G$ tel que $H \times H'$ soit isomorphe \`a $G$ ou, de mani\`ere \'equivalente, un isomorphisme de groupes entre $H'$ et $G/H$?\\
+
+Nous pouvons d'ores et d\'ej\`a affirmer que cela ne sera pas le cas en toute g\'en\'eralit\'e:\\
+En effet, tout sous-groupe $H'\subset\Z$ isomorphe à $\Z/2\Z$ serait immédiatement de torsion, ce qui n'est pas possible puisque $\Z$ est sans torsion.\bigbreak
+
+\aques Tout groupe ab\'elien $G$ de type fini admet-t-il une base?\medbreak
+%On peut également se demander si tout groupe abélien $G$ de type fini admet une base.\\
+\begin{prop}
+Soit $G$ un groupe ab\'elien de type fini. Alors $G$ admet une base \ssi $\Gt=\{0\}$.
+\end{prop}
+%Ce ne sera jamais le cas si $\Gt$ n'est pas réduit à l'élément nul.
+\begin{rem}
+D'apr\`es le corollaire~\ref{equiv-base-isom-Zr}, cela revient \`a montrer que $G$ est isomorphe \`a $\Z^r$, $r\in\N$ \ssi $\Gt=\{0\}$.
+\end{rem}
+\begin{proof}
+%Donnons nous $\gamma=(x_1,\cdots,x_n)$, $\n\in\N$ une famille g\'en\'eratrice de $G$ (licite car $G$ est de type fini).
+\direct %Donnons nous $\mathcal{B}=(u_1,\cdots,u_n)$ une base de $G$ ($n<+\infty$ car $G$ est de type fini). Soit alors $t\in\Gt$.
+Soit $f$ un isomorphisme entre $G$ et $\Z^r$ et $g_t\in\Gt$.\\
+Alors $\exists! (n_1,\ldots,n_r)\in\Z^r$ tel que $f(n_1,\ldots,n_r)=g_t$.\\
+Soit $m:=ordre(g_t)>0$.
+Alors $mg_t=0=mf(n_1,\ldots,n_r)=f(mn_1,\ldots,mn_r)$, donc $(mn_1,\ldots,mn_r)\in \ker f=\{0\}$
+i.e. $\forall i\in\nt{1;r},\, mn_i=0$ et donc par int\`egrit\'e de $\Z^r$: 
+$$m=0\textrm{ ou }\forall i\in\nt{1;r},\, n_i=0$$
+Or $m>0$, donc $\forall i\in\nt{1;r},\, n_i=0$, et donc $g_t=f(n_1,\ldots,n_r)=f(0)=0$.\\
+On en d\'eduit que  $\Gt=\{0\}$\bigbreak
+\reciproque Raisonnons par contrapos\'ee:\\
+Comme $G$ est de type fini, la proposition~\ref{type-fini-et-Zr} nous assure que il existe $r\in\N$ et $f:\Z^r\to G$ tel que $f$ soit un morphisme de groupes surjectif.\\
+Montrons alors que si $\Gt\neq \{0\}$, un tel morphisme $f$ n'est pas injectif i.e. $\ker f\neq\{0\}$.\smallbreak
+Comme $0\in\Gt$, $\Gt\neq \{0\}\implies \exists g_t\in\Gt\backslash\{0\}$.
+Soit alors $(n_1,\ldots,n_r)\in\Z^r$ tel que $f(n_1,\ldots,n_r)=g_t$.
+Comme $f(0)=0$, $g_t\neq 0\implies (n_1,\ldots,n_r)\neq 0$.\smallbreak
+Soit $m:=ordre(g_t)>0$. Alors par int\'egrit\'e de $\Z$, $m(n_1,\ldots,n_r)=(mn_1,\ldots,mn_r)\neq 0$.\\
+Or $mg_t=0=mf(n_1,\ldots,n_r)=f(m(n_1,\ldots,n_r))=f(mn_1,\ldots,mn_r)$, donc\\
+$(mn_1,\ldots,mn_r)\in\ker f$ et $(mn_1,\ldots,mn_r)\neq 0$ et donc $\ker f\neq \{0\}$.
+\end{proof}
+\exem
+La famille $(\overline{1}) \in \Z/2\Z$ ne forme pas une base de $\Z/2\Z$ (car $2.\overline{1}=\overline{2.1}=\overline{0}$, donc $(\overline{1})$ n'est pas libre)\\
+
+Par l'existence d'une surjection de $\Z^r$ dans $G$ (proposition~\ref{type-fini-et-Zr}) et par le théorème de factorisation, $G$ est isomorphe au groupe quotient $\Z^r/\ker f$. Nous allons donc dans un premier temps chercher à comprendre la structure des sous-groupes de $\Z^r$.
+
+\subsection{Sous-groupes de $\Z^r$}
+
+\begin{defi}[$\textrm{GL}_n(\Z)$]
 On note $\textrm{GL}_n(\Z)$ le groupe des matrices carrées de taille $n$ inversibles à coefficients dans l'anneau $\Z$ telles que l'inverse soit aussi à coefficients dans $\Z$.
+\end{defi}
 
 \begin{lem}
 Soit $A \in \textrm{GL}_n(\Q) \cap \mathcal{M}_n(\Z)$. Alors $A \in \textrm{GL}_n(\Z)$ si et seulement si $\vert \det A \vert =1$.
 \end{lem}
-
 \begin{proof}
-On suppose $A \in \textrm{GL}_n(\Z)$. Alors $(A, A^{-1}) \in \mathcal{M}_n(\Z)^2$. Comme $\underbrace{(\det A)}_{\in \Z}\underbrace{(\det A^{-1})}_{\in \Z}=1$, $\det A$ est un élément inversible du groupe $\Z$, donc égal à $1$ ou $-1$. La réciproque vient de la formule de la comatrice.
+\direct On suppose $A \in \textrm{GL}_n(\Z)$. Alors $(A, A^{-1}) \in \mathcal{M}_n(\Z)^2$.\\
+Comme $\underbrace{(\det A)}_{\in \Z}\underbrace{(\det A^{-1})}_{\in \Z}=1$, $\det A\in\Z^\x$, et donc $\det A=\pm 1$.\smallbreak
+\reciproque D\'ecoule de la formule de la comatrice: $A^{-1}=\frac{^t\textrm{com}A}{\det A}$ ($\det A=\pm 1$ et les coefficents de $^t\textrm{com}A$ s'expriment comme sommes et produits des coefficients de $A\in \mathcal{M}_n(\Z)$, donc sont tous dans $\Z$).
 \end{proof}
 
-\begin{theo}
-Soit $A \in \mathcal{M}_{mn}(\Z)$. Alors il existe $P \in \textrm{GL}_n(\Z)$ et $Q \in \textrm{GL}_m(\Z)$ tels que $PAQ^{-1}=\left(
- \begin{array}{cccccc}
-   d_1\\
-   & \ddots & & & \text{\huge0} \\
-    &  & d_r & \\
-    & & \\
-    & \text{\huge0} & & & \text{\huge0} \\
-    & & & & 
- \end{array}
-\right)$, où $ r \in \N$ et la famille $(d_i)_{1 \leqslant i \leqslant r} \in (\Z^*)^r$ vérifie $d_1 \vert \ldots \vert d_r$. De plus, ces coefficients sont uniquement déterminés par la matrice $A$, et appelés les \textit{facteurs invariants de $A$}.
-\end{theo}
+\begin{lem}[Lemme clef]\label{lemme-clef}
+Soit $A \in \mathcal{M}_{n,m}(\Z)$. Alors il existe $P \in \textrm{GL}_n(\Z)$ et $Q \in \textrm{GL}_m(\Z)$ tels que $PAQ^{-1}=
+\begin{pmatrix}
+	r\biggg\{\overbrace{
+		\begin{matrix}d_1&&0\\
+	  	&\ddots\\
+      	0&&d_r\end{matrix}
+	}^{r} && \text{\huge0}&\\
+	&\\
+    \text{\huge0} && \text{\huge0}\\
+	&
+\end{pmatrix}$
+, où $ r \in \N$ et la famille $(d_i)_{1 \leqslant i \leqslant r} \in (\Z^*)^r$ vérifie $d_1 \vert \ldots \vert d_r$. De plus, ces coefficients sont uniquement déterminés par la matrice $A$, et appelés les \textit{facteurs invariants de $A$}.
+\end{lem}
+\begin{proof}
+Admis.
+\end{proof}
 
 \begin{rem}
-Ce théorème est l'équivalent de la forme réduite standard à équivalence près d'une matrice à coefficients dans le corps $\C$.
+Ce théorème est l'équivalent de la forme réduite standard à équivalence près d'une matrice à coefficients dans un corps $\K$:\\
+Si $A\in \mathcal{M}_{n,m}(\K)$, alors $\exists (P,Q)\in\textrm{GL}_n(\K)\x\textrm{GL}_m(\K)$ tel que $PAQ^{-1}=
+\begin{pmatrix}
+	r\biggg\{\overbrace{
+		\begin{matrix}1&&0\\
+		&\ddots\\
+		0&&1\end{matrix}
+	}^{r} && \text{\huge0}&\\
+	&\\
+    \text{\huge0} && \text{\huge0}\\
+	&
+\end{pmatrix}$ o\`u $r=\rg{A}$.
 \end{rem}
 
-\begin{prop}
+\begin{prop}\label{card-fam-libre}
 Soit $G$ un \textit{groupe abélien libre de type fini}. On note $n$ le cardinal d'une base de $G$. Alors toute famille d'éléments linéairement indépendants de $G$ admet au plus $n$ éléments.
 \end{prop}
 
-\begin{proof}$G$ étant isomorphe à $\Z^n$ pour un certain $n \in \N$ et comme un isomorphisme de groupe échange les familles libres, il suffit de raisonner sur une famille $\mathcal{F}$ libre d'éléments de $\Z^n$. $\mathcal{F}$ est alors $\Q$-libre (quitte à multiplier une combinaison linéaire par un dénominateur commun) donc forme une famille libre du $\Q$-espace vectoriel $\Q^n$. Donc $\vert \mathcal{F} \vert \leqslant n$.
+\begin{proof}$G$ étant isomorphe à $\Z^n$ pour un certain $n \in \N$ (d\'efinition-proposition~\ref{def-groupe-torsion}) et comme un isomorphisme de groupe échange
+les familles libres, il suffit de raisonner sur une famille $\mathcal{F}$ libre d'éléments de $\Z^n$.\\
+$\mathcal{F}$ est alors $\Q$-libre (il suffit de multiplier une combinaison linéaire dans $\Q$ par un dénominateur commun et de conclure par libert\'e de la famille dans $\Z^n$), donc forme une famille libre du $\Q$-espace vectoriel $\Q^n$. De par les r\'esultats g\'en\'eraux sur les espaces vectoriels, on a donc $\vert \mathcal{F} \vert \leqslant n$.
 \end{proof}
 
 \begin{rem}
-Il n'y a pas d'analogue du théorèmes de la base incomplète pour les groupes abéliens : exemple ?
+\warning{En g\'en\'eral, une famille libre d'un \textit{groupe abélien libre de type fini} ne peut se prolonger en une base de $G$!}\smallbreak
+En d'autres termes, il n'y a pas d'analogue du théorème de la base incomplète pour les groupes abéliens.
 \end{rem}
+
+\exem
+Dans $\Z^2$, $\mathcal{F}=((1,0),(0,2))$ est une famille libre de $\Z^2$, mais non g\'en\'eratrice ($(0,1)$ ne peut se d\'ecomposer dans $\mathcal{F}$) qui de plus
+ne peut se prolonger en une base $\mathcal{B}$ de $\Z^2$ (sinon on aurait $|\mathcal{B}|\geq 3$ ce qui, en vertu de la propositon~\ref{card-fam-libre}, est absurde)
 
 \begin{theo}[de la base adaptée]
 Soit $G$ un \textit{groupe abélien libre de type fini}. Soit $H$ un sous-groupe de $G$. Alors $H$ est également un \textit{groupe abélien libre de type fini}. De plus, il existe une base $e=(e_1, \ldots, e_n)$ de $G$ et une famille d'entiers $(d_i)_{1 \leqslant i \leqslant r} \in (\Z^*)^r$ où $r \leqslant n$ vérifiant $d_1 \vert \ldots \vert d_r$ tels que la famille d'éléments de $G$ $(d_1e_1, \ldots, d_re_r)$ forme une base de $H$. De plus, l'entier $r$ et les coefficients $(d_i)_{1 \leqslant i \leqslant r}$ sont uniquement déterminés par la base $e$ de départ, appelés respectivement le rang et les facteurs du groupe $G$.
@@ -663,6 +762,4 @@ Réciproquement, on suppose l'idéal $I$ maximal pour l'inclusion. Alors l'annea
 \end{proof}
 
 \end{document}
-
-
 
