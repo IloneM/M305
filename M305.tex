@@ -34,7 +34,8 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\ent}[2]{[\![ #1, #2 ]\!]}
 
-
+\newcommand{\ibl}{[\![}
+\newcommand{\ibr}{]\!]}
 
 % Algèbre linéaire
 
@@ -179,17 +180,19 @@
 \newtheorem*{coro*}{Corollaire} 
 \newtheorem*{ax*}{Axiome}
                 
-\theoremstyle{remark}
+%\theoremstyle{remark}
 
 % avec numerotation
 
 \newtheorem{rem}[defi]{Remarque}
 \newtheorem{nota}[defi]{Notation}
+\newtheorem{exo}[defi]{Exercice}
 
 %sans numerotation
 
 \newtheorem*{rem*}{Remarque}
 \newtheorem*{nota*}{Notation} 
+\newtheorem*{exo*}{Exercice}
 
 
 \newcommand*{\quo}[2]%
@@ -225,11 +228,11 @@
 
 \newcommand{\warning}[1]{{\bf{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax} #1}}
 
-\newcounter{nexo}
-\setcounter{nexo}{0}        
-\newcommand{\exo}{
-  \stepcounter{nexo}        
-  {\textbf{Exercice \arabic{nexo}} \\ }}
+%\newcounter{nexo}
+%\setcounter{nexo}{0}        
+%\newcommand{\exo}{
+%  \stepcounter{nexo}        
+%  {\textbf{Exercice \arabic{nexo}} \\ }}
   
 \newcommand{\appli}{{\textbf{$\text{\ding{46}}$ Application : \ }}}  
 
@@ -606,7 +609,7 @@ Comme $\underbrace{(\det A)}_{\in \Z}\underbrace{(\det A^{-1})}_{\in \Z}=1$, $\d
 \end{proof}
 
 \begin{lem}[Lemme clef]\label{lemme-clef}
-Soit $A \in \mathcal{M}_{n,m}(\Z)$. Alors il existe $P \in \textrm{GL}_n(\Z)$ et $Q \in \textrm{GL}_m(\Z)$ tels que $PAQ^{-1}=
+Soit $A \in \mathcal{M}_{n,m}(\Z)$. Alors $\exists(P,Q) \in \textrm{GL}_n(\Z)\x\textrm{GL}_m(\Z)$ tels que $PAQ^{-1}=
 \begin{pmatrix}
 	r\biggg\{\overbrace{
 		\begin{matrix}d_1&&0\\
@@ -620,7 +623,7 @@ Soit $A \in \mathcal{M}_{n,m}(\Z)$. Alors il existe $P \in \textrm{GL}_n(\Z)$ et
 , où $ r \in \N$ et la famille $(d_i)_{1 \leqslant i \leqslant r} \in (\Z^*)^r$ vérifie $d_1 \vert \ldots \vert d_r$. De plus, ces coefficients sont uniquement déterminés par la matrice $A$, et appelés les \textit{facteurs invariants de $A$}.
 \end{lem}
 \begin{proof}
-Admis.
+Plus tard.
 \end{proof}
 
 \begin{rem}
@@ -656,12 +659,48 @@ En d'autres termes, il n'y a pas d'analogue du théorème de la base incomplète
 Dans $\Z^2$, $\mathcal{F}=((1,0),(0,2))$ est une famille libre de $\Z^2$, mais non g\'en\'eratrice ($(0,1)$ ne peut se d\'ecomposer dans $\mathcal{F}$) qui de plus
 ne peut se prolonger en une base $\mathcal{B}$ de $\Z^2$ (sinon on aurait $|\mathcal{B}|\geq 3$ ce qui, en vertu de la propositon~\ref{card-fam-libre}, est absurde)
 
+\begin{exo}
+Red\'emontrer la propositon~\ref{card-fam-libre} en utilisant le lemme clef~\ref{lemme-clef}.
+\end{exo}
+
 \begin{theo}[de la base adaptée]
-Soit $G$ un \textit{groupe abélien libre de type fini}. Soit $H$ un sous-groupe de $G$. Alors $H$ est également un \textit{groupe abélien libre de type fini}. De plus, il existe une base $e=(e_1, \ldots, e_n)$ de $G$ et une famille d'entiers $(d_i)_{1 \leqslant i \leqslant r} \in (\Z^*)^r$ où $r \leqslant n$ vérifiant $d_1 \vert \ldots \vert d_r$ tels que la famille d'éléments de $G$ $(d_1e_1, \ldots, d_re_r)$ forme une base de $H$. De plus, l'entier $r$ et les coefficients $(d_i)_{1 \leqslant i \leqslant r}$ sont uniquement déterminés par la base $e$ de départ, appelés respectivement le rang et les facteurs du groupe $G$.
+Soit $G$ un \textit{groupe abélien libre de type fini}. Soit $H$ un sous-groupe de $G$. Alors $H$ est également un \textit{groupe abélien libre de type fini}.
+De plus, il existe une base $e=(e_1, \ldots, e_n)$ de $G$ et une famille d'entiers $(d_i)_{1 \leqslant i \leqslant r} \in (\Z^*)^r$ où $r \leqslant n$ vérifiant
+$d_1 \vert \ldots \vert d_r$ tels que la famille d'éléments de $G$ $(d_1e_1, \ldots, d_re_r)$ forme une base de $H$.\\
+De plus, l'entier $r$ et les coefficients $(d_i)_{1 \leqslant i \leqslant r}$ sont uniquement déterminés par la base $e$ de départ, appelés respectivement le \textit{rang} et les \textit{facteurs} du groupe $G$.
 \end{theo}
 
 \begin{proof}
-Soit $(x_1, \ldots, x_n)$ une base de $G$. Soit $(y_1, \ldots, y_m)$ une famille génératrice de $H$ (licite car $H$ est un sous-groupe abélien de type fini). 
+\underline{Existence:}
+Soit $(x_1, \ldots, x_n)$ une base de $G$ qui identifie canoniquement $G$ \`a $\Z^n$.\\
+Soit $(y_1, \ldots, y_m)$ une famille génératrice de $H$ (licite car $H$ est un sous-groupe abélien de type fini).\\
+Comme les $(x_1, \ldots, x_n)$ forme une base de $G$, on peut \'ecrire de mani\`ere unique:
+$$\forall j\in\nt{1;m},\, y_j=\sum_{i=r}^{n}a_{ij}x_i,\, a_{ij}\in\Z$$
+Soit $A:=(a_{ij})_{\substack{1\leqslant i\leqslant n\\1\leqslant j\leqslant m}}$. Alors le lemme clef~\ref{lemme-clef} nous donne
+$(P,Q) \in \textrm{GL}_m(\Z)\x\textrm{GL}_n(\Z)$ tels que $PAQ^{-1}=
+\begin{pmatrix}
+		\begin{matrix}d_1&&0\\
+	  	&\ddots\\
+      	0&&d_r\end{matrix}
+	&& \text{\huge0}&\\
+	&\\
+    \text{\huge0} && \text{\huge0}\\
+	&
+\end{pmatrix}$ et $d_1|\ldots|d_r$. Posons $\forall i\in\nt{1;n},\, e_i:=Qx_i=\sum_{j=1}^nq_{ij}x_j$ et $\forall j\in\nt{1;m},\, f_j:=P^{-1}y_j$ i.e.
+$\forall i\in\nt{1;m},\, y_i=Pf_i=\sum_{j=1}^mp_{ij}f_j$.\\
+Autrement dit, on change:
+\begin{ls}
+\item la base $(x_1, \ldots, x_n)$ par son image par $Q$.
+\item la famille g\'en\'eratrice $(y_1, \ldots, y_m)$ par son image par $P^{-1}$.
+\end{ls}
+Par inversibilit\'e de $P$ et $Q$, on a que:
+\begin{ls}
+\item $(e_1, \ldots, e_n)$ est une base de $G$.
+\item $(f_1, \ldots, f_m)$ est une famille g\'en\'eratrice de $H$.
+\end{ls}
+Par construction, on a $f_1=d_1e_1,\ldots,f_r=d_re_r,f_j=0\,(r<j\leqslant m)$. Alors $(f_1,\ldots,f_r)$ est une famille g\'en\'eratrice de $H$,
+libre par libert\'e de $(e_1, \ldots, e_r)$, i.e. $(f_1,\ldots,f_r)=(d_1e_1,\ldots,d_re_r)$ est une base de $H$.\medbreak
+\underline{Unicit\'e:} Plus tard.
 \end{proof}
 
 \begin{theo}[de structure des groupes abéliens de type fini]
@@ -669,8 +708,11 @@ Soit $G$ un \textit{groupe abélien de type fini}. Alors il existe un unique ent
 \end{theo}
 
 \begin{rem}
-$\Gt=\{0\}^r \times \Z/d_1\Z \times \ldots \times \Z/d_s\Z$ et $G_{\textrm{sans torsion}}=\Z^r \times \{0\}^{s}$ 
+$\Gt=\{0\}^r \times \Z/d_1\Z \times \ldots \times \Z/d_s\Z$ et $G_{\textrm{sans torsion}}=\Z^r \times \{0\}^{s}$.\\
+Ces deux groupes v\'erifient bien $G_{\textrm{sans torsion}}\simeq G/\Gt$.
 \end{rem}
+
+%% pause-here
 
 \begin{proof}
 On se donne un morphisme de groupes surjectif $f$ de $\Z^n$ dans $G$. On pose $H=\ker f$. Alors, d'après le théorème de factorisation, $G$ est isomorphe à $\Z^n/H$ $(\star)$.Par application du théorème de la base adaptée à $\Z^n$, il existe une base $e=(e_1, \ldots, e_n)$ de $\Z^n$ et une famille d'entiers $(d_i)_{1 \leqslant i \leqslant s} \in (\Z^*)^s$ où $s \leqslant n$ vérifiant $d_1 \vert \ldots \vert d_s$ tels que la famille $(d_1e_1, \ldots, d_re_s)$ d'éléments de $G$ forme une base de $H$, ie $H=\left\{\dis \sum_{i=1}^s a_id_ie_i \mid (a_i)_{1 \leqslant i \leqslant s} \in \Z^s \right\}=\left\{\dis \sum_{i=1}^n a_ie_i \mid (a_i)_{1 \leqslant i \leqslant n} \in (d_i\Z)^s\times\{0\}^{n-s} \right\}$ $(\star ')$. 
@@ -679,15 +721,8 @@ On considère le morphisme de groupes surjectif $\app{\pi}{\Z^n}{\Z/d_1\Z \times
 Ainsi, d'après $(\star)$, $G$ est isomorphe à $\Z^n/\ker \pi$, lui-même isomorphe à $\Z/d_1\Z \times \ldots \times \Z/d_s\Z \times \Z^{r}$ où $r=n-s \in \nt{0,n}$ (d'après le théorème de factorisation). D'où l'existence. 
 \end{proof}
 
-\begin{rem}
-\begin{itemize}
-\item  
-\item Variante du théorème :
-\end{itemize}
-\end{rem}
-
 \begin{coro}
-Soit $G$ un \textit{groupe abélien de type fini}. On suppose $G$ \textit{sans torsion}. Alors le groupe abélien de type fini $G$ est \textit{libre}.
+Soit $G$ un \textit{groupe abélien de type fini}. On suppose $G$ \textit{sans torsion}. Alors $G$ est \textit{libre}.
 \end{coro}
 
 \begin{proof}
